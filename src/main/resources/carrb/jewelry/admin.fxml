@@ -13,7 +13,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" style="-fx-background-color: #F3DC77;" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.aircom.AdminWindowController">
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" style="-fx-background-color: #F3DC77;" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="carrb.jewelry.AdminController">
   <tabs>
     <Tab text="Главная - &quot;Товары&quot;">
       <content>
@@ -245,12 +245,12 @@
                         <Font name="Times New Roman" size="20.0" />
                      </font>
                   </Button>
-                  <TextField fx:id="idEmployeeField" alignment="CENTER" layoutX="25.0" layoutY="472.0" prefHeight="38.0" prefWidth="50.0" promptText="ID">
+                  <TextField fx:id="idEmployeeField" alignment="CENTER" layoutX="24.0" layoutY="478.0" prefHeight="38.0" prefWidth="50.0" promptText="ID">
                      <font>
                         <Font name="Times New Roman" size="18.0" />
                      </font>
                   </TextField>
-                  <Label fx:id="employeeWarningField" alignment="CENTER" layoutX="146.0" layoutY="423.0" prefHeight="24.0" prefWidth="702.0" textFill="RED">
+                  <Label fx:id="employeeWarningField" alignment="CENTER" layoutX="145.0" layoutY="438.0" prefHeight="24.0" prefWidth="702.0" textFill="RED">
                      <font>
                         <Font name="Times New Roman" size="20.0" />
                      </font>
@@ -268,22 +268,22 @@
                         <TableColumn fx:id="SNILSEmployeeColumn" prefWidth="81.0" text="СНИЛС" />
                      </columns>
                   </TableView>
-                  <TextField fx:id="surnameEmployeeField" alignment="CENTER" layoutX="245.0" layoutY="472.0" prefHeight="38.0" prefWidth="195.0" promptText="Фамилия">
+                  <TextField fx:id="surnameEmployeeField" alignment="CENTER" layoutX="244.0" layoutY="478.0" prefHeight="38.0" prefWidth="195.0" promptText="Фамилия">
                      <font>
                         <Font name="Times New Roman" size="18.0" />
                      </font>
                   </TextField>
-                  <TextField fx:id="nameEmployeeField" alignment="CENTER" layoutX="445.0" layoutY="472.0" prefHeight="38.0" prefWidth="185.0" promptText="Имя">
+                  <TextField fx:id="nameEmployeeField" alignment="CENTER" layoutX="444.0" layoutY="478.0" prefHeight="38.0" prefWidth="185.0" promptText="Имя">
                      <font>
                         <Font name="Times New Roman" size="18.0" />
                      </font>
                   </TextField>
-                  <TextField fx:id="secondNameEmployeeField" alignment="CENTER" layoutX="635.0" layoutY="472.0" prefHeight="38.0" prefWidth="170.0" promptText="Отчество">
+                  <TextField fx:id="secondNameEmployeeField" alignment="CENTER" layoutX="634.0" layoutY="478.0" prefHeight="38.0" prefWidth="170.0" promptText="Отчество">
                      <font>
                         <Font name="Times New Roman" size="18.0" />
                      </font>
                   </TextField>
-                  <TextField fx:id="phoneEmployeeField" alignment="CENTER" layoutX="80.0" layoutY="472.0" prefHeight="38.0" prefWidth="160.0" promptText="Телефон">
+                  <TextField fx:id="phoneEmployeeField" alignment="CENTER" layoutX="79.0" layoutY="478.0" prefHeight="38.0" prefWidth="160.0" promptText="Телефон">
                      <font>
                         <Font name="Times New Roman" size="18.0" />
                      </font>
@@ -313,12 +313,7 @@
                         <Font name="Times New Roman" size="18.0" />
                      </font>
                   </TextField>
-                  <RadioButton fx:id="idEmployeeRadio" layoutX="42.0" layoutY="447.0" mnemonicParsing="false" />
-                  <RadioButton fx:id="surnameEmployeeRadio" layoutX="335.0" layoutY="447.0" mnemonicParsing="false" />
-                  <RadioButton fx:id="phoneEmployeeRadio" layoutX="152.0" layoutY="447.0" mnemonicParsing="false" />
-                  <RadioButton fx:id="INNEmployeeRadio" layoutX="548.0" layoutY="517.0" mnemonicParsing="false" />
-                  <RadioButton fx:id="SNILSEmployeeRadio" layoutX="794.0" layoutY="517.0" mnemonicParsing="false" />
-                  <TextField fx:id="birthdateEmployeeField" alignment="CENTER" layoutX="810.0" layoutY="472.0" prefHeight="38.0" prefWidth="168.0" promptText="Дата рождения">
+                  <TextField fx:id="birthdateEmployeeField" alignment="CENTER" layoutX="809.0" layoutY="478.0" prefHeight="38.0" prefWidth="168.0" promptText="Дата рождения">
                      <font>
                         <Font name="Times New Roman" size="18.0" />
                      </font>

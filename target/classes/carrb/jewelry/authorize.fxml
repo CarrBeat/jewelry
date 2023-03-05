@@ -4,20 +4,17 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
-<?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="520.0" style="-fx-background-color: #F3DC77;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="carrb.jewelry.AuthorizationController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="350.0" prefWidth="520.0" style="-fx-background-color: #F3DC77;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="carrb.jewelry.AuthorizationController">
    <children>
       <Label layoutX="187.0" layoutY="67.0" text="Авторизация">
          <font>
             <Font name="Times New Roman" size="26.0" />
          </font>
       </Label>
-      <TextField fx:id="phoneNumField" alignment="CENTER" layoutX="128.0" layoutY="111.0" prefHeight="37.0" prefWidth="261.0" promptText="Номер телефона" style="-fx-border-color: #000000; -fx-border-radius: 5; -fx-border-width: 2;">
+      <TextField fx:id="loginField" alignment="CENTER" layoutX="128.0" layoutY="111.0" prefHeight="37.0" prefWidth="261.0" promptText="Логин" style="-fx-border-color: #000000; -fx-border-radius: 5; -fx-border-width: 2;">
          <font>
             <Font name="Times New Roman" size="20.0" />
          </font>
@@ -27,42 +24,7 @@
             <Font name="Times New Roman" size="20.0" />
          </font>
       </PasswordField>
-      <TextField fx:id="codeField" alignment="CENTER" layoutX="157.0" layoutY="247.0" prefHeight="41.0" prefWidth="162.0" promptText="Код с картинки" style="-fx-border-width: 2; -fx-border-color: #000000; -fx-border-radius: 5; -fx-border-width: 2;">
-         <font>
-            <Font name="Times New Roman" size="20.0" />
-         </font>
-      </TextField>
-      <Label fx:id="captLab1" layoutX="168.0" layoutY="346.0">
-         <font>
-            <Font name="Times New Roman" size="33.0" />
-         </font>
-      </Label>
-      <Label fx:id="captLab2" layoutX="208.0" layoutY="323.0">
-         <font>
-            <Font name="Times New Roman" size="33.0" />
-         </font>
-      </Label>
-      <Label fx:id="captLab3" layoutX="232.0" layoutY="355.0">
-         <font>
-            <Font name="Times New Roman" size="33.0" />
-         </font>
-      </Label>
-      <Label fx:id="captLab4" layoutX="267.0" layoutY="332.0">
-         <font>
-            <Font name="Times New Roman" size="33.0" />
-         </font>
-      </Label>
-      <Label fx:id="captLab5" layoutX="308.0" layoutY="346.0">
-         <font>
-            <Font name="Times New Roman" size="33.0" />
-         </font>
-      </Label>
-      <Label fx:id="captLab6" layoutX="323.0" layoutY="323.0">
-         <font>
-            <Font name="Times New Roman" size="33.0" />
-         </font>
-      </Label>
-      <Button fx:id="enterButton" layoutX="206.0" layoutY="427.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="106.0" style="-fx-border-color: #000000; -fx-border-width: 2; -fx-border-radius: 5; -fx-background-color: #F3DC77;" text="ВОЙТИ">
+      <Button fx:id="enterButton" layoutX="209.0" layoutY="288.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="106.0" style="-fx-border-color: #000000; -fx-border-width: 2; -fx-border-radius: 5; -fx-background-color: #F3DC77;" text="ВОЙТИ">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>
@@ -72,26 +34,14 @@
             <Font name="Times New Roman" size="15.0" />
          </font>
       </Button>
-      <ImageView fitHeight="103.0" fitWidth="210.0" layoutX="156.0" layoutY="308.0" opacity="0.44" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@capture.png" />
-         </image>
-      </ImageView>
-      <Line endX="198.0" layoutX="168.0" layoutY="308.0" startX="-12.0" strokeWidth="2.0" />
-      <Line endX="188.0" endY="85.7977294921875" layoutX="178.0" layoutY="318.0" startX="-22.0" startY="85.7977294921875" strokeWidth="2.0" />
-      <Line endX="-33.0" endY="74.7977294921875" layoutX="188.0" layoutY="328.0" startX="-32.0" startY="-20.0" strokeWidth="2.0" />
-      <Line endX="168.0" endY="65.7977294921875" layoutX="198.0" layoutY="338.0" startX="168.0" startY="-30.0" strokeWidth="2.0" />
-      <Button fx:id="refreshButton" layoutX="319.0" layoutY="247.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="41.0" style="-fx-background-color: #F3DC77;">
-         <graphic>
-            <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@refresh.png" />
-               </image>
-            </ImageView>
-         </graphic></Button>
       <Label layoutX="180.0" layoutY="14.0" text="Ювелирчик">
          <font>
             <Font name="Times New Roman Italic" size="34.0" />
+         </font>
+      </Label>
+      <Label fx:id="warningLabel" alignment="CENTER" layoutX="77.0" layoutY="252.0" prefHeight="20.0" prefWidth="370.0" textFill="RED">
+         <font>
+            <Font name="Times New Roman" size="18.0" />
          </font>
       </Label>
    </children>

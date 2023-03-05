@@ -3,57 +3,58 @@ package carrb.jewelry;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-
-import java.util.concurrent.ThreadLocalRandom;
+import javafx.scene.control.TextField;
 
 public class AuthorizationController {
     @FXML
     private Label welcomeText;
-    @FXML private Button refreshButton;
-    @FXML private Label captLab1; // заголовки для кода (снизу тоже)
-    @FXML private Label captLab2;
-    @FXML private Label captLab3;
-    @FXML private Label captLab4;
-    @FXML private Label captLab5;
-    @FXML private Label captLab6;
-    private String captNum1, captNum2, captNum3, captNum4, captNum5, captNum6;
-    private Boolean refreshAccess = true;  // доступ к обновлению капчи
+    @FXML private Button enterButton;
+    @FXML private TextField loginField;
+    @FXML private TextField passwordField;
+    @FXML private Label warningLabel;
+    private String authMethRes; // результат работы метода
+    public static String login; // для хранения обработанного номера телефона
 
     @FXML
     void initialize(){
-        changeCapture();
 
-        refreshButton.setOnAction(event -> { // при нажатии на кнопку обновления кода
-            if(refreshAccess) {
-                changeCapture();
-                refreshAccess = false;
-            }
-        });
+        enterButton.setOnAction(event -> { // нажатие пнопки "Войти"
+            warningLabel.setText("");
+                        if (!loginField.getText().equals("") & !passwordField.getText().equals("")) {
+                                    try { // обращение к методу авторизации
+                                        authMethRes = Authorization.authorization(loginField.getText());
+                                        if (authMethRes.equals("incorrect login")){
+                                            warningLabel.setText("Неверный логин!");
+                                            loginField.setText("");
+                                        } else {
+                                            if (authMethRes.substring(authMethRes.indexOf("|") + 1)
+                                                    .equals(passwordField.getText())){
+                                                switch (authMethRes.substring(0, authMethRes.indexOf("|"))){
+                                                    case "admin":
+                                                        openAdminWindow();
+                                                        ((Button)event.getSource()).getScene().getWindow().hide();
+                                                        break;
+                                                    case "employee":
+                                                        System.out.println("Открываем окно работника");
+                                                        ((Button)event.getSource()).getScene().getWindow().hide();
+                                                        break;
+                                                }
+                                            } else {
+                                                passwordField.setText("");
+                                                warningLabel.setText("Неверный пароль!");
+                                            }
+                                        }
+                                        System.out.println(authMethRes);
+                                    } catch (Exception e) {
+                                        e.printStackTrace();
+                                    }
+                                }
+                });
     }
 
-
-//    @FXML
-//    protected void onHelloButtonClick() {
-//        welcomeText.setText("Welcome to JavaFX Application!");
-//    }
-
-
-
-    void changeCapture(){ // метод обновления кода
-        refreshAccess = true;
-        captNum1 = String.valueOf(ThreadLocalRandom.current().nextInt(0, 10));
-        captNum2 = String.valueOf(ThreadLocalRandom.current().nextInt(0, 10));
-        captNum3 = String.valueOf(ThreadLocalRandom.current().nextInt(0, 10));
-        captNum4 = String.valueOf(ThreadLocalRandom.current().nextInt(0, 10));
-        captNum5 = String.valueOf(ThreadLocalRandom.current().nextInt(0, 10));
-        captNum6 = String.valueOf(ThreadLocalRandom.current().nextInt(0, 10));
-
-        captLab1.setText(captNum1);
-        captLab2.setText(captNum2);
-        captLab3.setText(captNum3);
-        captLab4.setText(captNum4);
-        captLab5.setText(captNum5);
-        captLab6.setText(captNum6);
+    void openAdminWindow() throws Exception{
+        AdminWindow adminWindow = new AdminWindow();
+        adminWindow.showWindow();
     }
 
 }
