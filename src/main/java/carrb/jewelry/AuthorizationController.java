@@ -35,7 +35,7 @@ public class AuthorizationController {
                                                         ((Button)event.getSource()).getScene().getWindow().hide();
                                                         break;
                                                     case "employee":
-                                                        System.out.println("Открываем окно работника");
+                                                        openEmployeeWindow();
                                                         ((Button)event.getSource()).getScene().getWindow().hide();
                                                         break;
                                                 }
@@ -44,7 +44,6 @@ public class AuthorizationController {
                                                 warningLabel.setText("Неверный пароль!");
                                             }
                                         }
-                                        System.out.println(authMethRes);
                                     } catch (Exception e) {
                                         e.printStackTrace();
                                     }
@@ -55,6 +54,11 @@ public class AuthorizationController {
     void openAdminWindow() throws Exception{
         AdminWindow adminWindow = new AdminWindow();
         adminWindow.showWindow();
+    }
+
+    void openEmployeeWindow() throws Exception{
+        EmployeeWindow employeeWindow = new EmployeeWindow();
+        employeeWindow.showWindow();
     }
 
 }
