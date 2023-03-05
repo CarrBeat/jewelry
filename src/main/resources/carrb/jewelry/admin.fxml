@@ -1,0 +1,507 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" style="-fx-background-color: #F3DC77;" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.aircom.AdminWindowController">
+  <tabs>
+    <Tab text="Главная - &quot;Товары&quot;">
+      <content>
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <Label alignment="CENTER" layoutX="265.0" layoutY="14.0" prefHeight="39.0" prefWidth="470.0" text="Администрирование">
+                     <font>
+                        <Font name="Times New Roman" size="35.0" />
+                     </font>
+                  </Label>
+                  <TableView fx:id="merchandiseTableView" layoutX="16.0" layoutY="102.0" prefHeight="359.0" prefWidth="967.0">
+                    <columns>
+                        <TableColumn fx:id="IDmerchColumn" prefWidth="37.0" text="ID" />
+                      <TableColumn fx:id="manufacturerMerchColumn" prefWidth="113.0" text="Производитель" />
+                      <TableColumn fx:id="modelMerchColumn" prefWidth="92.0" text="Модель" />
+                        <TableColumn fx:id="typeMerchColumn" prefWidth="98.0" text="Тип товара" />
+                        <TableColumn fx:id="materialMerchColumn" prefWidth="88.0" text="Материал" />
+                        <TableColumn fx:id="sampleMerchColumn" prefWidth="46.0" text="Проба" />
+                        <TableColumn fx:id="weightMerchColumn" prefWidth="69.0" text="Вес" />
+                        <TableColumn fx:id="warrantyMerchColumn" prefWidth="114.0" text="Гарантийный срок" />
+                        <TableColumn fx:id="priceMerchColumn" prefWidth="62.0" text="Цена" />
+                        <TableColumn fx:id="quantMerchColumn" minWidth="0.0" prefWidth="85.0" text="Ед. на складе" />
+                        <TableColumn fx:id="descriptionMerchColumn" prefWidth="90.0" text="Описание" />
+                        <TableColumn fx:id="photoMerchColumn" prefWidth="66.0" text="Фото" />
+                    </columns>
+                  </TableView>
+                  <TextField fx:id="modelMerchField" alignment="CENTER" layoutX="231.0" layoutY="476.0" prefHeight="32.0" prefWidth="166.0" promptText="Модель">
+                     <font>
+                        <Font name="Times New Roman" size="17.0" />
+                     </font>
+                  </TextField>
+                  <Label alignment="CENTER" layoutX="265.0" layoutY="63.0" prefHeight="39.0" prefWidth="470.0" text="Товары">
+                     <font>
+                        <Font name="Times New Roman" size="22.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="IDMerchField" alignment="CENTER" layoutX="18.0" layoutY="476.0" prefHeight="32.0" prefWidth="37.0" promptText="ID">
+                     <font>
+                        <Font name="Times New Roman" size="17.0" />
+                     </font>
+                  </TextField>
+                  <TextField fx:id="manufacturerMerchField" alignment="CENTER" layoutX="63.0" layoutY="476.0" prefHeight="32.0" prefWidth="160.0" promptText="Производитель">
+                     <font>
+                        <Font name="Times New Roman" size="17.0" />
+                     </font>
+                  </TextField>
+                  <TextField fx:id="typeMerchField" alignment="CENTER" layoutX="406.0" layoutY="476.0" prefHeight="32.0" prefWidth="127.0" promptText="Тип товара">
+                     <font>
+                        <Font name="Times New Roman" size="17.0" />
+                     </font>
+                  </TextField>
+                  <Button fx:id="addStrMerch" layoutX="311.0" layoutY="619.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="140.0" style="-fx-background-color: #9DB1CC; -fx-border-radius: 5; -fx-border-color: #000000;" text="Добавить строку">
+                     <font>
+                        <Font name="Times New Roman" size="16.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="changeStrMerch" layoutX="611.0" layoutY="619.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="145.0" style="-fx-background-color: #9DB1CC; -fx-border-radius: 5; -fx-border-color: #000000;" text="Изменить строку">
+                     <font>
+                        <Font name="Times New Roman" size="16.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="removeStrMerch" layoutX="460.0" layoutY="619.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="140.0" style="-fx-background-color: #9DB1CC; -fx-border-radius: 5; -fx-border-color: #000000;" text="Удалить строку">
+                     <font>
+                        <Font name="Times New Roman" size="16.0" />
+                     </font>
+                  </Button>
+                  <Label fx:id="connectionWarningLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="64.0" layoutY="580.0" prefHeight="39.0" prefWidth="470.0" textFill="#fc0000">
+                     <font>
+                        <Font name="Times New Roman" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="tariffWarningLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="325.0" layoutY="571.0" prefHeight="39.0" prefWidth="387.0" textFill="#fc0000">
+                     <font>
+                        <Font name="Times New Roman" size="18.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="materialMerchField" alignment="CENTER" layoutX="543.0" layoutY="476.0" prefHeight="32.0" prefWidth="150.0" promptText="Материал">
+                     <font>
+                        <Font name="Times New Roman" size="17.0" />
+                     </font>
+                  </TextField>
+                  <TextField fx:id="sampleMerchField" alignment="CENTER" layoutX="700.0" layoutY="476.0" prefHeight="32.0" prefWidth="140.0" promptText="Проба">
+                     <font>
+                        <Font name="Times New Roman" size="17.0" />
+                     </font>
+                  </TextField>
+                  <TextField fx:id="weightMerchField" alignment="CENTER" layoutX="846.0" layoutY="476.0" prefHeight="32.0" prefWidth="137.0" promptText="Вес">
+                     <font>
+                        <Font name="Times New Roman" size="17.0" />
+                     </font>
+                  </TextField>
+                  <TextField fx:id="warrantyMerchField" alignment="CENTER" layoutX="19.0" layoutY="538.0" prefHeight="32.0" prefWidth="164.0" promptText="Гарантийный срок">
+                     <font>
+                        <Font name="Times New Roman" size="17.0" />
+                     </font>
+                  </TextField>
+                  <TextField fx:id="priceMerchField" alignment="CENTER" layoutX="188.0" layoutY="538.0" prefHeight="32.0" prefWidth="86.0" promptText="Цена">
+                     <font>
+                        <Font name="Times New Roman" size="17.0" />
+                     </font>
+                  </TextField>
+                  <TextField fx:id="quantMerchField" alignment="CENTER" layoutX="277.0" layoutY="538.0" prefHeight="32.0" prefWidth="120.0" promptText="Ед. на складе">
+                     <font>
+                        <Font name="Times New Roman" size="17.0" />
+                     </font>
+                  </TextField>
+                  <TextField fx:id="descriptionMerchField" alignment="CENTER" layoutX="406.0" layoutY="538.0" prefHeight="32.0" prefWidth="120.0" promptText="Описание">
+                     <font>
+                        <Font name="Times New Roman" size="17.0" />
+                     </font>
+                  </TextField>
+                  <TextField fx:id="photoMerchField" alignment="CENTER" layoutX="533.0" layoutY="538.0" prefHeight="32.0" prefWidth="111.0" promptText="Фото">
+                     <font>
+                        <Font name="Times New Roman" size="17.0" />
+                     </font>
+                  </TextField>
+                  <ImageView fx:id="merchImage" fitHeight="145.0" fitWidth="190.0" layoutX="778.0" layoutY="518.0" pickOnBounds="true" preserveRatio="true" />
+                  <Button fx:id="findMerchButton" layoutX="19.0" layoutY="619.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="133.0" style="-fx-background-color: #9DB1CC; -fx-border-radius: 5; -fx-border-color: #000000;" text="НАЙТИ">
+                     <font>
+                        <Font name="Times New Roman" size="16.0" />
+                     </font>
+                  </Button>
+                  <RadioButton fx:id="IDMerchRadio" layoutX="29.0" layoutY="512.0" mnemonicParsing="false" />
+                  <RadioButton fx:id="modelMerchRadio" layoutX="306.0" layoutY="512.0" mnemonicParsing="false" />
+                  <RadioButton fx:id="priceMerchRadio" layoutX="223.0" layoutY="578.0" mnemonicParsing="false" />
+                  <Button fx:id="stopFilterMerchButton" layoutX="161.0" layoutY="619.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="124.0" style="-fx-background-color: #9DB1CC; -fx-border-radius: 5; -fx-border-color: #000000;" text="СБРОСИТЬ">
+                     <font>
+                        <Font name="Times New Roman" size="16.0" />
+                     </font>
+                  </Button>
+                  <RadioButton fx:id="typeMerchRadio" layoutX="462.0" layoutY="512.0" mnemonicParsing="false" />
+                  <Button fx:id="merchCheckPhotoButton" layoutX="653.0" layoutY="538.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="118.0" style="-fx-background-color: #9DB1CC; -fx-border-radius: 5; -fx-border-color: #000000;" text="ПРОСМОТР">
+                     <font>
+                        <Font name="Times New Roman" size="16.0" />
+                     </font>
+                  </Button>
+               </children></AnchorPane>
+      </content>
+    </Tab>
+      <Tab text="Таблица &quot;Продажи&quot;">
+         <content>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <Label layoutX="453.0" layoutY="14.0" text="Продажи">
+                     <font>
+                        <Font name="Times New Roman" size="22.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="IDpurchaseField" alignment="CENTER" layoutX="198.0" layoutY="483.0" prefHeight="38.0" prefWidth="75.0" promptText="ID">
+                     <font>
+                        <Font name="Times New Roman" size="18.0" />
+                     </font>
+                  </TextField>
+                  <Label fx:id="clientWarningLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="146.0" layoutY="423.0" prefHeight="24.0" prefWidth="702.0" textFill="RED">
+                     <font>
+                        <Font name="Times New Roman" size="20.0" />
+                     </font>
+                  </Label>
+                  <TableView fx:id="purchaseTableView" layoutX="104.0" layoutY="48.0" prefHeight="411.0" prefWidth="785.0">
+                    <columns>
+                      <TableColumn fx:id="IDpurchaseColumn" prefWidth="38.0" text="ID" />
+                      <TableColumn fx:id="merchPurchaseColumn" prefWidth="190.0" text="Товар" />
+                        <TableColumn fx:id="paySumPurchaseColumn" prefWidth="120.0" text="Сумма оплаты" />
+                        <TableColumn fx:id="payMethodPurchaseColumn" prefWidth="134.0" text="Способ оплаты" />
+                        <TableColumn fx:id="clientPurchaseColumn" prefWidth="138.0" text="Клиент" />
+                        <TableColumn fx:id="employeePurchaseColumn" prefWidth="161.0" text="Продавец" />
+                    </columns>
+                  </TableView>
+                  <TextField fx:id="merchPurchaseField" alignment="CENTER" layoutX="325.0" layoutY="483.0" prefHeight="38.0" prefWidth="220.0" promptText="Товар">
+                     <font>
+                        <Font name="Times New Roman" size="18.0" />
+                     </font>
+                  </TextField>
+                  <TextField fx:id="paySumPurchaseField" alignment="CENTER" layoutX="593.0" layoutY="483.0" prefHeight="38.0" prefWidth="229.0" promptText="Сумма оплаты">
+                     <font>
+                        <Font name="Times New Roman" size="18.0" />
+                     </font>
+                  </TextField>
+                  <TextField fx:id="payMethodPurchaseField" alignment="CENTER" layoutX="187.0" layoutY="551.0" prefHeight="38.0" prefWidth="230.0" promptText="Способ оплаты">
+                     <font>
+                        <Font name="Times New Roman" size="18.0" />
+                     </font>
+                  </TextField>
+                  <TextField fx:id="clientPurchaseField" alignment="CENTER" layoutX="469.0" layoutY="551.0" prefHeight="38.0" prefWidth="145.0" promptText="Клиент (ID)">
+                     <font>
+                        <Font name="Times New Roman" size="18.0" />
+                     </font>
+                  </TextField>
+                  <TextField fx:id="employeePurchaseField" alignment="CENTER" layoutX="650.0" layoutY="551.0" prefHeight="38.0" prefWidth="175.0" promptText="Продавец (ID)">
+                     <font>
+                        <Font name="Times New Roman" size="18.0" />
+                     </font>
+                  </TextField>
+                  <Button fx:id="removeStrClientButton" layoutX="280.0" layoutY="607.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="115.0" style="-fx-background-color: #9DB1CC; -fx-border-color: #000000; -fx-border-radius: 5;" text="НАЙТИ">
+                     <font>
+                        <Font name="Times New Roman" size="20.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="removeStrClientButton1" layoutX="607.0" layoutY="607.0" mnemonicParsing="false" style="-fx-background-color: #9DB1CC; -fx-border-color: #000000; -fx-border-radius: 5;" text="СТЕРЕТЬ">
+                     <font>
+                        <Font name="Times New Roman" size="20.0" />
+                     </font>
+                  </Button>
+                  <RadioButton fx:id="IDpurchaseRadio" layoutX="291.0" layoutY="494.0" mnemonicParsing="false" />
+                  <RadioButton fx:id="merchPurchaseRadio" layoutX="560.0" layoutY="494.0" mnemonicParsing="false" />
+                  <RadioButton fx:id="paySumPurchaseRadio" layoutX="837.0" layoutY="494.0" mnemonicParsing="false" />
+                  <RadioButton fx:id="payMethodPurchaseRadio" layoutX="434.0" layoutY="562.0" mnemonicParsing="false" />
+                  <RadioButton fx:id="clientPurchaseRadio" layoutX="626.0" layoutY="562.0" mnemonicParsing="false" />
+                  <RadioButton fx:id="employeePurchaseRadio" layoutX="837.0" layoutY="562.0" mnemonicParsing="false" />
+                  <Button fx:id="removeStrClientButton2" layoutX="439.0" layoutY="607.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="115.0" style="-fx-background-color: #9DB1CC; -fx-border-color: #000000; -fx-border-radius: 5;" text="Удалить">
+                     <font>
+                        <Font name="Times New Roman" size="20.0" />
+                     </font>
+                  </Button>
+               </children></AnchorPane>
+         </content>
+      </Tab>
+      <Tab text="Таблица &quot;Продавцы&quot;">
+         <content>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <Label layoutX="448.0" layoutY="14.0" text="Продавцы">
+                     <font>
+                        <Font name="Times New Roman" size="22.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="addStrEmployeeButton" layoutX="215.0" layoutY="607.0" mnemonicParsing="false" style="-fx-background-color: #9DB1CC; -fx-border-color: #000000; -fx-border-radius: 5;" text="Добавить строку">
+                     <font>
+                        <Font name="Times New Roman" size="20.0" />
+                     </font>
+                  </Button>
+                  <TextField fx:id="idEmployeeField" alignment="CENTER" layoutX="25.0" layoutY="472.0" prefHeight="38.0" prefWidth="50.0" promptText="ID">
+                     <font>
+                        <Font name="Times New Roman" size="18.0" />
+                     </font>
+                  </TextField>
+                  <Label fx:id="employeeWarningField" alignment="CENTER" layoutX="146.0" layoutY="423.0" prefHeight="24.0" prefWidth="702.0" textFill="RED">
+                     <font>
+                        <Font name="Times New Roman" size="20.0" />
+                     </font>
+                  </Label>
+                  <TableView fx:id="employeeTableView" layoutX="25.0" layoutY="50.0" prefHeight="375.0" prefWidth="951.0">
+                     <columns>
+                        <TableColumn fx:id="idEmployeeColumn" prefWidth="38.0" text="ID " />
+                        <TableColumn fx:id="phoneEmployeeColumn" prefWidth="107.076904296875" text="Телефон" />
+                        <TableColumn fx:id="surnameEmployeeColumn" prefWidth="130.70767211914062" text="Фамилия" />
+                        <TableColumn fx:id="nameEmployeeColumn" prefWidth="142.52308654785156" text="Имя" />
+                        <TableColumn fx:id="secondNameEmployeeColumn" prefWidth="149.16925048828125" text="Отчество" />
+                        <TableColumn fx:id="birthdateEmployeeColumn" prefWidth="104.0" text="Дата рождения" />
+                        <TableColumn fx:id="passDataEmployeeColumn" prefWidth="104.0" text="Пасспорт" />
+                        <TableColumn fx:id="INNEmployeeColumn" prefWidth="88.0" text="ИНН" />
+                        <TableColumn fx:id="SNILSEmployeeColumn" prefWidth="81.0" text="СНИЛС" />
+                     </columns>
+                  </TableView>
+                  <TextField fx:id="surnameEmployeeField" alignment="CENTER" layoutX="245.0" layoutY="472.0" prefHeight="38.0" prefWidth="195.0" promptText="Фамилия">
+                     <font>
+                        <Font name="Times New Roman" size="18.0" />
+                     </font>
+                  </TextField>
+                  <TextField fx:id="nameEmployeeField" alignment="CENTER" layoutX="445.0" layoutY="472.0" prefHeight="38.0" prefWidth="185.0" promptText="Имя">
+                     <font>
+                        <Font name="Times New Roman" size="18.0" />
+                     </font>
+                  </TextField>
+                  <TextField fx:id="secondNameEmployeeField" alignment="CENTER" layoutX="635.0" layoutY="472.0" prefHeight="38.0" prefWidth="170.0" promptText="Отчество">
+                     <font>
+                        <Font name="Times New Roman" size="18.0" />
+                     </font>
+                  </TextField>
+                  <TextField fx:id="phoneEmployeeField" alignment="CENTER" layoutX="80.0" layoutY="472.0" prefHeight="38.0" prefWidth="160.0" promptText="Телефон">
+                     <font>
+                        <Font name="Times New Roman" size="18.0" />
+                     </font>
+                  </TextField>
+                  <TextField fx:id="INNEmployeeField" alignment="CENTER" layoutX="451.0" layoutY="540.0" prefHeight="38.0" prefWidth="208.0" promptText="ИНН">
+                     <font>
+                        <Font name="Times New Roman" size="18.0" />
+                     </font>
+                  </TextField>
+                  <TextField fx:id="passDataEmployeeField" alignment="CENTER" layoutX="56.0" layoutY="540.0" prefHeight="38.0" prefWidth="387.0" promptText="Паспортные данные">
+                     <font>
+                        <Font name="Times New Roman" size="18.0" />
+                     </font>
+                  </TextField>
+                  <Button fx:id="removeStrEmployeeButton" layoutX="414.0" layoutY="607.0" mnemonicParsing="false" style="-fx-background-color: #9DB1CC; -fx-border-color: #000000; -fx-border-radius: 5;" text="Удалить строку">
+                     <font>
+                        <Font name="Times New Roman" size="20.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="changeStrEmployeeButton" layoutX="605.0" layoutY="607.0" mnemonicParsing="false" style="-fx-background-color: #9DB1CC; -fx-border-color: #000000; -fx-border-radius: 5;" text="Изменить строку">
+                     <font>
+                        <Font name="Times New Roman" size="20.0" />
+                     </font>
+                  </Button>
+                  <TextField fx:id="SNILSEmployeeField" alignment="CENTER" layoutX="666.0" layoutY="540.0" prefHeight="38.0" prefWidth="272.0" promptText="СНИЛС">
+                     <font>
+                        <Font name="Times New Roman" size="18.0" />
+                     </font>
+                  </TextField>
+                  <RadioButton fx:id="idEmployeeRadio" layoutX="42.0" layoutY="447.0" mnemonicParsing="false" />
+                  <RadioButton fx:id="surnameEmployeeRadio" layoutX="335.0" layoutY="447.0" mnemonicParsing="false" />
+                  <RadioButton fx:id="phoneEmployeeRadio" layoutX="152.0" layoutY="447.0" mnemonicParsing="false" />
+                  <RadioButton fx:id="INNEmployeeRadio" layoutX="548.0" layoutY="517.0" mnemonicParsing="false" />
+                  <RadioButton fx:id="SNILSEmployeeRadio" layoutX="794.0" layoutY="517.0" mnemonicParsing="false" />
+                  <TextField fx:id="birthdateEmployeeField" alignment="CENTER" layoutX="810.0" layoutY="472.0" prefHeight="38.0" prefWidth="168.0" promptText="Дата рождения">
+                     <font>
+                        <Font name="Times New Roman" size="18.0" />
+                     </font>
+                  </TextField>
+               </children>
+            </AnchorPane>
+         </content>
+      </Tab>
+      <Tab text="Таблица &quot;Клиенты&quot;">
+         <content>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <Label layoutX="454.0" layoutY="14.0" text="Клиенты">
+                     <font>
+                        <Font name="Times New Roman" size="22.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="addStrRequestButton" layoutX="406.0" layoutY="607.0" mnemonicParsing="false" style="-fx-background-color: #9DB1CC; -fx-border-color: #000000; -fx-border-radius: 5;" text="Добавить строку">
+                     <font>
+                        <Font name="Times New Roman" size="20.0" />
+                     </font>
+                  </Button>
+                  <TextField fx:id="idClientField" alignment="CENTER" layoutX="117.0" layoutY="475.0" prefHeight="38.0" prefWidth="45.0" promptText="ID">
+                     <font>
+                        <Font name="Times New Roman" size="18.0" />
+                     </font>
+                  </TextField>
+                  <Label fx:id="requestWarningLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="146.0" layoutY="423.0" prefHeight="24.0" prefWidth="702.0" textFill="RED">
+                     <font>
+                        <Font name="Times New Roman" size="20.0" />
+                     </font>
+                  </Label>
+                  <TableView fx:id="clientTableView" layoutX="25.0" layoutY="50.0" prefHeight="350.0" prefWidth="951.0">
+                     <columns>
+                        <TableColumn fx:id="idClientColumn" prefWidth="38.0" text="ID " />
+                        <TableColumn fx:id="phoneClientColumn" prefWidth="99.0" text="Телефон" />
+                        <TableColumn fx:id="surnameClientColumn" prefWidth="116.0" text="Фамилия" />
+                        <TableColumn fx:id="nameClientColumn" prefWidth="130.0" text="Имя" />
+                        <TableColumn fx:id="secondNameClientColumn" prefWidth="128.0" text="Отчество" />
+                        <TableColumn fx:id="birthdateClientColumn" prefWidth="119.0" text="Дата рождения" />
+                        <TableColumn fx:id="emailClientColumn" prefWidth="162.0" text="Эл. почта" />
+                        <TableColumn fx:id="totalOrderSumClientColumn" prefWidth="103.0" text="Сумма покупок" />
+                        <TableColumn fx:id="discountLevelColumn" prefWidth="52.0" text="Скидка" />
+                     </columns>
+                  </TableView>
+                  <Button fx:id="removeStrRequestButton" layoutX="605.0" layoutY="607.0" mnemonicParsing="false" style="-fx-background-color: #9DB1CC; -fx-border-color: #000000; -fx-border-radius: 5;" text="Удалить строку">
+                     <font>
+                        <Font name="Times New Roman" size="20.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="changeStrRequestButton" layoutX="796.0" layoutY="607.0" mnemonicParsing="false" style="-fx-background-color: #9DB1CC; -fx-border-color: #000000; -fx-border-radius: 5;" text="Изменить строку">
+                     <font>
+                        <Font name="Times New Roman" size="20.0" />
+                     </font>
+                  </Button>
+                  <TextField fx:id="phoneClientField" alignment="CENTER" layoutX="263.0" layoutY="548.0" prefHeight="38.0" prefWidth="137.0" promptText="Телефон">
+                     <font>
+                        <Font name="Times New Roman" size="18.0" />
+                     </font>
+                  </TextField>
+                  <TextField fx:id="surnameClientField" alignment="CENTER" layoutX="173.0" layoutY="474.0" prefHeight="38.0" prefWidth="185.0" promptText="Фамилия">
+                     <font>
+                        <Font name="Times New Roman" size="18.0" />
+                     </font>
+                  </TextField>
+                  <TextField fx:id="nameClientField" alignment="CENTER" layoutX="365.0" layoutY="474.0" prefHeight="38.0" prefWidth="190.0" promptText="Имя">
+                     <font>
+                        <Font name="Times New Roman" size="18.0" />
+                     </font>
+                  </TextField>
+                  <TextField fx:id="secondNameClientField" alignment="CENTER" layoutX="562.0" layoutY="474.0" prefHeight="38.0" prefWidth="191.0" promptText="Отчество">
+                     <font>
+                        <Font name="Times New Roman" size="18.0" />
+                     </font>
+                  </TextField>
+                  <TextField fx:id="birthdateClientField" alignment="CENTER" layoutX="759.0" layoutY="474.0" prefHeight="38.0" prefWidth="170.0" promptText="Дата рождения">
+                     <font>
+                        <Font name="Times New Roman" size="18.0" />
+                     </font>
+                  </TextField>
+                  <TextField fx:id="emailClientField" alignment="CENTER" layoutX="407.0" layoutY="548.0" prefHeight="38.0" prefWidth="170.0" promptText="email">
+                     <font>
+                        <Font name="Times New Roman" size="18.0" />
+                     </font>
+                  </TextField>
+                  <Button fx:id="addStrRequestButton1" layoutX="14.0" layoutY="607.0" mnemonicParsing="false" style="-fx-background-color: #9DB1CC; -fx-border-color: #000000; -fx-border-radius: 5;" text="НАЙТИ">
+                     <font>
+                        <Font name="Times New Roman" size="20.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="addStrRequestButton2" layoutX="135.0" layoutY="607.0" mnemonicParsing="false" style="-fx-background-color: #9DB1CC; -fx-border-color: #000000; -fx-border-radius: 5;" text="СБРОСИТЬ">
+                     <font>
+                        <Font name="Times New Roman" size="20.0" />
+                     </font>
+                  </Button>
+                  <RadioButton fx:id="idClientRadio" layoutX="132.0" layoutY="450.0" mnemonicParsing="false" />
+                  <RadioButton fx:id="phoneClientRadio" layoutX="324.0" layoutY="525.0" mnemonicParsing="false" />
+                  <RadioButton fx:id="emailClientRadio" layoutX="484.0" layoutY="525.0" mnemonicParsing="false" />
+                  <TextField fx:id="discountLevelField" alignment="CENTER" layoutX="595.0" layoutY="548.0" prefHeight="38.0" prefWidth="170.0" promptText="Скидка">
+                     <font>
+                        <Font name="Times New Roman" size="18.0" />
+                     </font>
+                  </TextField>
+                  <RadioButton fx:id="discountLevelRadio" layoutX="672.0" layoutY="525.0" mnemonicParsing="false" />
+               </children>
+            </AnchorPane>
+         </content>
+      </Tab>
+      <Tab text="Таблица &quot;Данные авторизации&quot;">
+         <content>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="52.0" layoutX="19.0" layoutY="192.0" stroke="BLACK" strokeType="INSIDE" width="963.0" />
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="119.0" layoutX="19.0" layoutY="279.0" stroke="BLACK" strokeType="INSIDE" width="963.0" />
+                  <Label layoutX="390.0" layoutY="146.0" text="Данные авторизации:">
+                     <font>
+                        <Font name="Times New Roman" size="24.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="authDataWarningLabel" alignment="CENTER" layoutX="150.0" layoutY="250.0" prefHeight="24.0" prefWidth="702.0" textFill="RED">
+                     <font>
+                        <Font name="Times New Roman" size="20.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="35.0" layoutY="206.0" text="Удалить пользователя:">
+                     <font>
+                        <Font name="Times New Roman" size="22.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="userToRemovePhoneField" alignment="CENTER" layoutX="269.0" layoutY="199.0" prefHeight="38.0" prefWidth="333.0" promptText="Номер телефона пользователя">
+                     <font>
+                        <Font name="Times New Roman" size="18.0" />
+                     </font>
+                  </TextField>
+                  <Button fx:id="removeUserButton" layoutX="697.0" layoutY="198.0" mnemonicParsing="false" style="-fx-background-color: #9DB1CC; -fx-border-color: #000000; -fx-border-radius: 5;" text="Удалить пользователя">
+                     <font>
+                        <Font name="Times New Roman" size="20.0" />
+                     </font>
+                  </Button>
+                  <Label layoutX="30.0" layoutY="323.0" text="Добавить продавца:">
+                     <font>
+                        <Font name="Times New Roman" size="22.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="userToAddPhoneField" alignment="CENTER" layoutX="269.0" layoutY="286.0" prefHeight="38.0" prefWidth="333.0" promptText="Номер телефона">
+                     <font>
+                        <Font name="Times New Roman" size="18.0" />
+                     </font>
+                  </TextField>
+                  <Button fx:id="addNewUserButton" layoutX="693.0" layoutY="316.0" mnemonicParsing="false" style="-fx-background-color: #9DB1CC; -fx-border-color: #000000; -fx-border-radius: 5;" text="Добавить пользователя">
+                     <font>
+                        <Font name="Times New Roman" size="20.0" />
+                     </font>
+                  </Button>
+                  <TextField fx:id="userToAddPasswordField" alignment="CENTER" layoutX="269.0" layoutY="350.0" prefHeight="38.0" prefWidth="333.0" promptText="Пароль">
+                     <font>
+                        <Font name="Times New Roman" size="18.0" />
+                     </font>
+                  </TextField>
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="119.0" layoutX="19.0" layoutY="421.0" stroke="BLACK" strokeType="INSIDE" width="963.0" />
+                  <Label layoutX="30.0" layoutY="468.0" text="Сменить пароль">
+                     <font>
+                        <Font name="Times New Roman" size="22.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="userToChangePassPhoneField" alignment="CENTER" layoutX="269.0" layoutY="430.0" prefHeight="38.0" prefWidth="333.0" promptText="Номер телефона">
+                     <font>
+                        <Font name="Times New Roman" size="18.0" />
+                     </font>
+                  </TextField>
+                  <TextField fx:id="userToChangePassField" alignment="CENTER" layoutX="269.0" layoutY="494.0" prefHeight="38.0" prefWidth="333.0" promptText="Новый пароль">
+                     <font>
+                        <Font name="Times New Roman" size="18.0" />
+                     </font>
+                  </TextField>
+                  <Button fx:id="changeUsersPasswordButton" layoutX="724.0" layoutY="461.0" mnemonicParsing="false" style="-fx-background-color: #9DB1CC; -fx-border-color: #000000; -fx-border-radius: 5;" text="Сменить пароль">
+                     <font>
+                        <Font name="Times New Roman" size="20.0" />
+                     </font>
+                  </Button>
+               </children>
+            </AnchorPane>
+         </content>
+      </Tab>
+  </tabs>
+</TabPane>
