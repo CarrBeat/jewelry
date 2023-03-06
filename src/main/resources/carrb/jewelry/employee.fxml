@@ -58,11 +58,6 @@
                         <Font name="Times New Roman" size="17.0" />
                      </font>
                   </TextField>
-                  <Button fx:id="addMerchButton" layoutX="619.0" layoutY="619.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="165.0" style="-fx-background-color: #9DB1CC; -fx-border-radius: 5; -fx-border-color: #000000;" text="ДОБАВИТЬ ТОВАР">
-                     <font>
-                        <Font name="Times New Roman" size="16.0" />
-                     </font>
-                  </Button>
                   <Label fx:id="merchandiseWarningLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="470.0" layoutY="577.0" prefHeight="39.0" prefWidth="387.0" textFill="#fc0000">
                      <font>
                         <Font name="Times New Roman" size="18.0" />
@@ -103,24 +98,29 @@
                         <Font name="Times New Roman" size="17.0" />
                      </font>
                   </TextField>
-                  <Button fx:id="findMerchButton" layoutX="282.0" layoutY="619.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="145.0" style="-fx-background-color: #9DB1CC; -fx-border-radius: 5; -fx-border-color: #000000;" text="НАЙТИ ТОВАР">
-                     <font>
-                        <Font name="Times New Roman" size="16.0" />
-                     </font>
-                  </Button>
                   <RadioButton fx:id="IDMerchRadio" layoutX="29.0" layoutY="512.0" mnemonicParsing="false" />
                   <RadioButton fx:id="modelMerchRadio" layoutX="197.0" layoutY="579.0" mnemonicParsing="false" />
                   <RadioButton fx:id="manufacturerMerchRadio" layoutX="135.0" layoutY="512.0" mnemonicParsing="false" />
-                  <Button fx:id="stopFilterMerchButton" layoutX="435.0" layoutY="619.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="175.0" style="-fx-background-color: #9DB1CC; -fx-border-radius: 5; -fx-border-color: #000000;" text="СБРОСИТЬ ФИЛЬТР">
-                     <font>
-                        <Font name="Times New Roman" size="16.0" />
-                     </font>
-                  </Button>
                   <RadioButton fx:id="typeMerchRadio" layoutX="462.0" layoutY="512.0" mnemonicParsing="false" />
                   <RadioButton fx:id="materialMerchRadio" layoutX="609.0" layoutY="513.0" mnemonicParsing="false" />
                   <RadioButton fx:id="priceMerchRadio" layoutX="429.0" layoutY="579.0" mnemonicParsing="false" />
                   <RadioButton fx:id="warrantyMerchRadio" layoutX="307.0" layoutY="512.0" mnemonicParsing="false" />
                   <RadioButton fx:id="descriptionMerchRadio" layoutX="789.0" layoutY="579.0" mnemonicParsing="false" />
+                  <Button fx:id="findMerchButton" layoutX="282.0" layoutY="619.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="145.0" style="-fx-background-color: #9DB1CC; -fx-border-radius: 5; -fx-border-color: #000000;" text="НАЙТИ ТОВАР">
+                     <font>
+                        <Font name="Times New Roman" size="16.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="stopFilterMerchButton" layoutX="435.0" layoutY="619.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="175.0" style="-fx-background-color: #9DB1CC; -fx-border-radius: 5; -fx-border-color: #000000;" text="СБРОСИТЬ ФИЛЬТР">
+                     <font>
+                        <Font name="Times New Roman" size="16.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="addMerchButton" layoutX="619.0" layoutY="619.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="165.0" style="-fx-background-color: #9DB1CC; -fx-border-radius: 5; -fx-border-color: #000000;" text="ДОБАВИТЬ ТОВАР">
+                     <font>
+                        <Font name="Times New Roman" size="16.0" />
+                     </font>
+                  </Button>
                </children></AnchorPane>
       </content>
     </Tab>
@@ -206,7 +206,7 @@
                         <Font name="Times New Roman" size="22.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="sumPurchaseField" alignment="CENTER" layoutX="391.0" layoutY="539.0" prefHeight="38.0" prefWidth="167.0" promptText="СУММА ЗАКАЗА">
+                  <TextField fx:id="sumPurchaseField" alignment="CENTER" layoutX="391.0" layoutY="540.0" prefHeight="38.0" prefWidth="167.0" promptText="СУММА ЗАКАЗА">
                      <font>
                         <Font name="Times New Roman" size="18.0" />
                      </font>

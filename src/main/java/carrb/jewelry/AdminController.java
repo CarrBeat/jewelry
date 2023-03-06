@@ -452,8 +452,8 @@ public class AdminController {
             if (operation.equals("addition")){
                 statement = connection.prepareStatement("insert into authData values (((SELECT COUNT(*) FROM authData) + 1), ?, ?, ?)");
                 statement.setString(1, phoneEmployeeField.getText());
-                statement.setString(2, reverseString(phoneEmployeeField.getText().substring(1)));
-                System.out.println(reverseString(phoneEmployeeField.getText().substring(1)));
+                statement.setString(2, Common.reverseString(phoneEmployeeField.getText().substring(1)));
+                System.out.println(Common.reverseString(phoneEmployeeField.getText().substring(1)));
                 statement.setString(3, "employee");
                 statement.executeLargeUpdate();
 
@@ -492,7 +492,5 @@ public class AdminController {
         SNILSEmployeeField.setText("");
         showEmployeeTable();
     }
-    public static String reverseString(String str) {
-        return new StringBuilder(str).reverse().toString();
-    }
+
 }
