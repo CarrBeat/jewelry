@@ -215,6 +215,7 @@ public class EmployeeController {
     ObservableList<merchandiseTable> merchandiseTableData = FXCollections.observableArrayList();
     float discount;
     int goodsSum;
+    int goodsQuant;
 
     @FXML
     void initialize() throws ClassNotFoundException, InvocationTargetException, NoSuchMethodException,
@@ -349,10 +350,6 @@ public class EmployeeController {
             }
         });
         clearFields.setOnAction(actionEvent -> {
-            firstMerchField.setText("");
-            secondMerchField.setText("");
-            thirdMerchField.setText("");
-            fourthMerchField.setText("");
             if (firstMerchRadio.isSelected()){
                 firstMerchRadio.fire();
             }
@@ -365,13 +362,39 @@ public class EmployeeController {
             if (thirdMerchRadio.isSelected()){
                 thirdMerchRadio.fire();
             }
-            clientPhoneField.setText("");
-            goodsSumField.setText("");
-            totalSumField.setText("");
+            merchFieldCleaner();
         });
         calculateButton.setOnAction(actionEvent -> {
+            goodsQuant = 0;
             discount = 0;
-            if (firstMerchField.getText().length() >= 1  & firstMerchRadio.isSelected()){
+            if (firstMerchField.getText().length() >= 1 & firstMerchRadio.isSelected() &
+                    secondMerchField.getText().length() >= 1 & secondMerchRadio.isSelected() &
+                    thirdMerchField.getText().length() >= 1 & thirdMerchRadio.isSelected() &
+                    fourthMerchField.getText().length() >= 1 & fourthMerchRadio.isSelected()){
+                try {
+                    purchaseProcess("fourMerches");
+                } catch (ClassNotFoundException | NoSuchMethodException | InvocationTargetException |
+                         InstantiationException | IllegalAccessException e) {
+                    throw new RuntimeException(e);
+                }
+            } else if (firstMerchField.getText().length() >= 1 & firstMerchRadio.isSelected() &
+                    secondMerchField.getText().length() >= 1 & secondMerchRadio.isSelected() &
+                    thirdMerchField.getText().length() >= 1 & thirdMerchRadio.isSelected()) {
+                try {
+                    purchaseProcess("threeMerches");
+                } catch (ClassNotFoundException | NoSuchMethodException | InvocationTargetException |
+                         InstantiationException | IllegalAccessException e) {
+                    throw new RuntimeException(e);
+                }
+            } else if (firstMerchField.getText().length() >= 1 & firstMerchRadio.isSelected() &
+                    secondMerchField.getText().length() >= 1 & secondMerchRadio.isSelected()) {
+                try {
+                    purchaseProcess("twoMerches");
+                } catch (ClassNotFoundException | NoSuchMethodException | InvocationTargetException |
+                         InstantiationException | IllegalAccessException e) {
+                    throw new RuntimeException(e);
+                }
+            } else if (firstMerchField.getText().length() >= 1  & firstMerchRadio.isSelected()) {
                 try {
                     purchaseProcess("oneMerch");
                 } catch (ClassNotFoundException | NoSuchMethodException | InvocationTargetException |
@@ -379,37 +402,40 @@ public class EmployeeController {
                     throw new RuntimeException(e);
                 }
             }
-            if (firstMerchField.getText().length() >= 1 & firstMerchRadio.isSelected() &
-                    secondMerchField.getText().length() >= 1 & secondMerchRadio.isSelected()){
-                try {
-                    purchaseProcess("twoMerches");
-                } catch (ClassNotFoundException | NoSuchMethodException | InvocationTargetException |
-                         InstantiationException | IllegalAccessException e) {
-                    throw new RuntimeException(e);
-                }
-            }
-            if (firstMerchField.getText().length() >= 1 & firstMerchRadio.isSelected() &
-                    secondMerchField.getText().length() >= 1 & secondMerchRadio.isSelected() &
-                    thirdMerchField.getText().length() >= 1 & thirdMerchRadio.isSelected()){
-                try {
-                    purchaseProcess("threeMerches");
-                } catch (ClassNotFoundException | NoSuchMethodException | InvocationTargetException |
-                         InstantiationException | IllegalAccessException e) {
-                    throw new RuntimeException(e);
-                }
-            }
-            if (firstMerchField.getText().length() >= 1 & firstMerchRadio.isSelected() &
-                    secondMerchField.getText().length() >= 1 & secondMerchRadio.isSelected() &
-                    thirdMerchField.getText().length() >= 1 & thirdMerchRadio.isSelected() &
-                    firstMerchField.getText().length() >= 1 & firstMerchRadio.isSelected()){
-                try {
-                    purchaseProcess("fourMerches");
-                } catch (ClassNotFoundException | NoSuchMethodException | InvocationTargetException |
-                         InstantiationException | IllegalAccessException e) {
-                    throw new RuntimeException(e);
-                }
+        });
+        pushPurchase.setOnAction(actionEvent -> {
+            try {
+                newPurchase();
+            } catch (ClassNotFoundException | NoSuchMethodException | InvocationTargetException |
+                     InstantiationException | IllegalAccessException e) {
+                throw new RuntimeException(e);
             }
         });
+    }
+
+    void newPurchase() throws ClassNotFoundException, NoSuchMethodException, InvocationTargetException,
+            InstantiationException, IllegalAccessException {
+        Class.forName(driverUrl).getDeclaredConstructor().newInstance();
+        try (Connection connection = DriverManager.getConnection(serverUrl)) {
+            PreparedStatement statement = null;
+            switch (goodsQuant){
+                case 1:
+                    //statement = statement.executeQuery("select * from merchandise where idMerchandise ='" + IDMerchField.getText() + "'");
+                    break;
+                case 2:
+
+                    break;
+                case 3:
+
+                    break;
+                case 4:
+
+                    break;
+            }
+        } catch (SQLException e){
+            e.printStackTrace();
+            purchaseWarningLabel.setText("Ошибка при создании заказа!");
+        }
     }
 
     void merhShower(String command) throws ClassNotFoundException, NoSuchMethodException, InvocationTargetException,
@@ -484,6 +510,7 @@ public class EmployeeController {
 
     void purchaseProcess (String input) throws ClassNotFoundException, NoSuchMethodException, InvocationTargetException,
             InstantiationException, IllegalAccessException {
+        goodsSum = 0;
         try (Connection connection = DriverManager.getConnection(serverUrl)) {
             Statement statement = connection.createStatement();
             ResultSet resultSet;
@@ -493,101 +520,62 @@ public class EmployeeController {
                             firstMerchField.getText() + "'");
                     resultSet.next();
                     goodsSumField.setText(String.valueOf(resultSet.getInt(1)));
-                    if (clientPhoneField.getText().matches("[+][7][0-9]{10}") & clientPhoneRadio.isSelected()){
-                        System.out.println("yeah");
-                        resultSet = statement.executeQuery("select discountLevel from client where phone = '" +
-                                clientPhoneField.getText() + "'");
-                        resultSet.next();
-                        discount = resultSet.getFloat(1);
-                        System.out.println(discount);
-                        if (discount > 0){
-                            discountField.setText(String.valueOf(discount));
-                        }
-                        if (discountField.getText().equals("0")){
-                            totalSumField.setText(goodsSumField.getText());
-                        } else {
-                            totalSumField.setText(String.valueOf(Float.parseFloat(goodsSumField.getText()) * (1 - discount)));
-                        }
-                    } else {
-                        totalSumField.setText(goodsSumField.getText());
-                    }
+                    getDiscountInOrder();
+                    firstMerchField.setEditable(false);
+                    goodsQuant = 1;
                     break;
                 case "twoMerches":
-                    resultSet = statement.executeQuery("select price from merchandise where idMerchandise = '" + firstMerchField.getText() + "' union\n" +
-                            "select price from merchandise where idMerchandise = '" + secondMerchField.getText() + "'");
+                    resultSet = statement.executeQuery("select price from merchandise where idMerchandise = '" + firstMerchField.getText() + "'");
                     resultSet.next();
-                    goodsSumField.setText(String.valueOf(resultSet.getInt(1) + resultSet.getInt(2)));
-                    if (clientPhoneField.getText().matches("[+][7][0-9]{10}") & clientPhoneRadio.isSelected()){
-                        System.out.println("yeah");
-                        resultSet = statement.executeQuery("select discountLevel from client where phone = '" +
-                                clientPhoneField.getText() + "'");
-                        resultSet.next();
-                        discount = resultSet.getFloat(1);
-                        System.out.println(discount);
-                        if (discount > 0){
-                            discountField.setText(String.valueOf(discount));
-                        }
-                        if (discountField.getText().equals("0")){
-                            totalSumField.setText(goodsSumField.getText());
-                        } else {
-                            totalSumField.setText(String.valueOf(Float.parseFloat(goodsSumField.getText()) * (1 - discount)));
-                        }
-                    } else {
-                        totalSumField.setText(goodsSumField.getText());
-                    }
+                    goodsSum += resultSet.getInt(1);
+                    resultSet = statement.executeQuery("select price from merchandise where idMerchandise = '" + secondMerchField.getText() + "'");
+                    resultSet.next();
+                    goodsSum += resultSet.getInt(1);
+                    System.out.println(goodsSum);
+                    goodsSumField.setText(String.valueOf(goodsSum));
+                    getDiscountInOrder();
+                    firstMerchField.setEditable(false);
+                    secondMerchField.setEditable(false);
+                    goodsQuant = 2;
                     break;
                 case "threeMerches":
-                    resultSet = statement.executeQuery("select price from merchandise where idMerchandise = '" + firstMerchField.getText() + "' union\n" +
-                            "select price from merchandise where idMerchandise = '" + secondMerchField.getText() + "' union\n" +
-                            "select price from merchandise where idMerchandise = '" + thirdMerchField.getText() + "'");
+                    resultSet = statement.executeQuery("select price from merchandise where idMerchandise = '" + firstMerchField.getText() + "'");
                     resultSet.next();
-                    goodsSumField.setText(String.valueOf(resultSet.getInt(1) + resultSet.getInt(2) +
-                            resultSet.getInt(3)));
-                    if (clientPhoneField.getText().matches("[+][7][0-9]{10}") & clientPhoneRadio.isSelected()){
-                        System.out.println("yeah");
-                        resultSet = statement.executeQuery("select discountLevel from client where phone = '" +
-                                clientPhoneField.getText() + "'");
-                        resultSet.next();
-                        discount = resultSet.getFloat(1);
-                        System.out.println(discount);
-                        if (discount > 0){
-                            discountField.setText(String.valueOf(discount));
-                        }
-                        if (discountField.getText().equals("0")){
-                            totalSumField.setText(goodsSumField.getText());
-                        } else {
-                            totalSumField.setText(String.valueOf(Float.parseFloat(goodsSumField.getText()) * (1 - discount)));
-                        }
-                    } else {
-                        totalSumField.setText(goodsSumField.getText());
-                    }
+                    goodsSum += resultSet.getInt(1);
+                    resultSet = statement.executeQuery("select price from merchandise where idMerchandise = '" + secondMerchField.getText() + "'");
+                    resultSet.next();
+                    goodsSum += resultSet.getInt(1);
+                    resultSet = statement.executeQuery("select price from merchandise where idMerchandise = '" + thirdMerchField.getText() + "'");
+                    resultSet.next();
+                    goodsSum += resultSet.getInt(1);
+                    System.out.println(goodsSum);
+                    goodsSumField.setText(String.valueOf(goodsSum));
+                    getDiscountInOrder();
+                    firstMerchField.setEditable(false);
+                    secondMerchField.setEditable(false);
+                    thirdMerchField.setEditable(false);
+                    goodsQuant = 3;
                     break;
                 case "fourMerches":
-                    resultSet = statement.executeQuery("select price from merchandise where idMerchandise = '" + firstMerchField.getText() + "' union\n" +
-                            "select price from merchandise where idMerchandise = '" + secondMerchField.getText() + "' union\n" +
-                            "select price from merchandise where idMerchandise = '" + thirdMerchField.getText() + "' union\n" +
-                            "select price from merchandise where idMerchandise = '" + fourthMerchField.getText() + "'");
+                    resultSet = statement.executeQuery("select price from merchandise where idMerchandise = '" + firstMerchField.getText() + "'");
                     resultSet.next();
-                    goodsSumField.setText(String.valueOf(resultSet.getInt(1) + resultSet.getInt(2) +
-                            resultSet.getInt(3) + resultSet.getInt(4)));
-                    if (clientPhoneField.getText().matches("[+][7][0-9]{10}") & clientPhoneRadio.isSelected()){
-                        System.out.println("yeah");
-                        resultSet = statement.executeQuery("select discountLevel from client where phone = '" +
-                                clientPhoneField.getText() + "'");
-                        resultSet.next();
-                        discount = resultSet.getFloat(1);
-                        System.out.println(discount);
-                        if (discount > 0){
-                            discountField.setText(String.valueOf(discount));
-                        }
-                        if (discountField.getText().equals("0")){
-                            totalSumField.setText(goodsSumField.getText());
-                        } else {
-                            totalSumField.setText(String.valueOf(Float.parseFloat(goodsSumField.getText()) * (1 - discount)));
-                        }
-                    } else {
-                        totalSumField.setText(goodsSumField.getText());
-                    }
+                    goodsSum += resultSet.getInt(1);
+                    resultSet = statement.executeQuery("select price from merchandise where idMerchandise = '" + secondMerchField.getText() + "'");
+                    resultSet.next();
+                    resultSet = statement.executeQuery("select price from merchandise where idMerchandise = '" + thirdMerchField.getText() + "'");
+                    resultSet.next();
+                    goodsSum += resultSet.getInt(1);
+                    resultSet = statement.executeQuery("select price from merchandise where idMerchandise = '" + fourthMerchField.getText() + "'");
+                    resultSet.next();
+                    goodsSum += resultSet.getInt(1);
+                    System.out.println(goodsSum);
+                    goodsSumField.setText(String.valueOf(goodsSum));
+                    getDiscountInOrder();
+                    firstMerchField.setEditable(false);
+                    secondMerchField.setEditable(false);
+                    thirdMerchField.setEditable(false);
+                    fourthMerchField.setEditable(false);
+                    goodsQuant = 4;
                     break;
             }
         } catch (SQLException e) {
@@ -597,6 +585,33 @@ public class EmployeeController {
         }
     }
 
+        void getDiscountInOrder(){
+            if (clientPhoneField.getText().matches("[+][7][0-9]{10}") & clientPhoneRadio.isSelected()){
+                System.out.println("yeah");
+                try (Connection connection = DriverManager.getConnection(serverUrl)) {
+                    Statement statement = connection.createStatement();
+                    ResultSet resultSet;
+                    resultSet = statement.executeQuery("select discountLevel from client where phone = '" +
+                            clientPhoneField.getText() + "'");
+                    resultSet.next();
+                    discount = resultSet.getFloat(1);
+                    clientPhoneField.setEditable(false);
+                    System.out.println(discount);
+                    if (discount > 0) {
+                        discountField.setText(String.valueOf(discount));
+                    }
+                    if (discountField.getText().equals("0")) {
+                        totalSumField.setText(goodsSumField.getText());
+                    } else {
+                        totalSumField.setText(String.valueOf(Float.parseFloat(goodsSumField.getText()) * (1 - discount)));
+                    }
+                } catch (SQLException ex) {
+                    throw new RuntimeException(ex);
+                }
+            } else {
+                totalSumField.setText(goodsSumField.getText());
+            }
+        }
 
         void fillMerchTable() throws ClassNotFoundException, NoSuchMethodException, InvocationTargetException,
             InstantiationException, IllegalAccessException {
@@ -657,6 +672,7 @@ public class EmployeeController {
     }
 
     void merchFieldCleaner(){
+        goodsQuant = 0;
         IDMerchField.setText("");
         firstMerchField.setText("");
         secondMerchField.setText("");
@@ -673,6 +689,13 @@ public class EmployeeController {
         descriptionMerchField.setText("");
         discountField.setText("");
         purchaseWarningLabel.setText("");
+        firstMerchField.setEditable(true);
+        secondMerchField.setEditable(true);
+        thirdMerchField.setEditable(true);
+        fourthMerchField.setEditable(true);
+        clientPhoneField.setEditable(true);
+        sumPurchaseField.setText("");
+        totalSumField.setText("");
     }
 
 }
