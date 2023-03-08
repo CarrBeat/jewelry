@@ -157,7 +157,7 @@
                         <Font name="Times New Roman" size="18.0" />
                      </font>
                   </TextField>
-                  <Button fx:id="getReturnButton" layoutX="538.0" layoutY="598.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="245.0" style="-fx-background-color: #4cbb17; -fx-border-color: #000000; -fx-border-radius: 5;" text="ОФОРМИТЬ ВОЗВРАТ">
+                  <Button fx:id="getReturnButton" layoutX="371.0" layoutY="599.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="245.0" style="-fx-background-color: #4cbb17; -fx-border-color: #000000; -fx-border-radius: 5;" text="ОФОРМИТЬ ВОЗВРАТ">
                      <font>
                         <Font name="Times New Roman" size="20.0" />
                      </font>
@@ -206,16 +206,11 @@
                         <Font name="Times New Roman" size="22.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="sumPurchaseField" alignment="CENTER" layoutX="391.0" layoutY="540.0" prefHeight="38.0" prefWidth="167.0" promptText="СУММА ЗАКАЗА">
+                  <TextField fx:id="sumPurchaseField" alignment="CENTER" layoutX="622.0" layoutY="540.0" prefHeight="38.0" prefWidth="167.0" promptText="СУММА ЗАКАЗА">
                      <font>
                         <Font name="Times New Roman" size="18.0" />
                      </font>
                   </TextField>
-                  <Button fx:id="findPurchaseButton" layoutX="211.0" layoutY="598.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="210.0" style="-fx-background-color: #4cbb17; -fx-border-color: #000000; -fx-border-radius: 5;" text="НАЙТИ ПРОДАЖУ">
-                     <font>
-                        <Font name="Times New Roman" size="20.0" />
-                     </font>
-                  </Button>
                   <Rectangle fill="#f3dc77" height="163.0" layoutX="24.0" layoutY="310.0" stroke="BLACK" strokeType="INSIDE" width="952.0" />
                   <TextField fx:id="surnameClientField" alignment="CENTER" layoutX="43.0" layoutY="364.0" prefHeight="38.0" prefWidth="181.0" promptText="Фамилия">
                      <font>
@@ -243,12 +238,6 @@
                      </font>
                   </Button>
                   <TextField fx:id="secondNameClientField" alignment="CENTER" layoutX="422.0" layoutY="364.0" prefHeight="38.0" prefWidth="187.0" promptText="Отчество">
-                     <font>
-                        <Font name="Times New Roman" size="18.0" />
-                     </font>
-                  </TextField>
-                  <RadioButton fx:id="returnClientPhoneRadio" layoutX="797.0" layoutY="551.0" mnemonicParsing="false" />
-                  <TextField fx:id="returnClientPhoneField" alignment="CENTER" layoutX="576.0" layoutY="540.0" prefHeight="38.0" prefWidth="211.0" promptText="Номер телефона клиента">
                      <font>
                         <Font name="Times New Roman" size="18.0" />
                      </font>

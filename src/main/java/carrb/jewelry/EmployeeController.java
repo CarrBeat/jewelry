@@ -2,6 +2,7 @@ package carrb.jewelry;
 
 import java.lang.reflect.InvocationTargetException;
 import java.sql.*;
+import java.util.Objects;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -63,8 +64,7 @@ public class EmployeeController {
     @FXML
     private Button findMerchButton;
 
-    @FXML
-    private Button findPurchaseButton;
+
 
     @FXML
     private TextField firstMerchField;
@@ -151,12 +151,6 @@ public class EmployeeController {
     private Button registerClientButton;
 
     @FXML
-    private TextField returnClientPhoneField;
-
-    @FXML
-    private RadioButton returnClientPhoneRadio;
-
-    @FXML
     private TableColumn<?, ?> sampleMerchColumn;
 
     @FXML
@@ -216,6 +210,7 @@ public class EmployeeController {
     float discount;
     int goodsSum;
     int goodsQuant;
+    String idClient;
 
     @FXML
     void initialize() throws ClassNotFoundException, InvocationTargetException, NoSuchMethodException,
@@ -230,7 +225,6 @@ public class EmployeeController {
             priceMerchField.getText().length() >= 3 & quantMerchField.getText() != null &
             descriptionMerchField.getText().length() >= 1){
                 try {
-                    System.out.println("метод запущен");
                     fillMerchTable();
                 } catch (ClassNotFoundException | IllegalAccessException | InstantiationException |
                          InvocationTargetException | NoSuchMethodException e) {
@@ -242,7 +236,6 @@ public class EmployeeController {
         });
 
             findMerchButton.setOnAction(actionEvent -> {
-                System.out.println(IDMerchRadio.isSelected());
                 if (IDMerchRadio.isSelected() & IDMerchField.getText() != null){
                     try {
                         merhShower("id");
@@ -350,18 +343,6 @@ public class EmployeeController {
             }
         });
         clearFields.setOnAction(actionEvent -> {
-            if (firstMerchRadio.isSelected()){
-                firstMerchRadio.fire();
-            }
-            if (secondMerchRadio.isSelected()){
-                secondMerchRadio.fire();
-            }
-            if (thirdMerchRadio.isSelected()){
-                thirdMerchRadio.fire();
-            }
-            if (thirdMerchRadio.isSelected()){
-                thirdMerchRadio.fire();
-            }
             merchFieldCleaner();
         });
         calculateButton.setOnAction(actionEvent -> {
@@ -462,22 +443,23 @@ public class EmployeeController {
                 statement = connection.prepareStatement("update client set totalOrdersSum = totalOrdersSum + '"
                         + Float.parseFloat(totalSumField.getText()) + "'" +" where phone = '" + clientPhoneField.getText() + "'");
                 statement.executeLargeUpdate();
-                statement = connection.prepareStatement("insert into purchase VALUES (((SELECT COUNT(*) FROM merchandise) + 1), ?, ?, " +
+                statement = connection.prepareStatement("insert into purchase VALUES (((SELECT COUNT(*) FROM purchase) + 1), ?, ?, " +
                         "(select idClient from client where phone = ?), (select idEmployee from employee where phone = ?), " +
-                        "(SELECT CURDATE ()))");
+                        "(SELECT CAST(GETDATE() AS DATE)))");
                 statement.setInt(1, Integer.parseInt(firstMerchField.getText()));
                 statement.setFloat(2, Float.parseFloat(totalSumField.getText()));
                 statement.setString(3, clientPhoneField.getText());
                 statement.setString(4, Authorization.authorizedPhone);
             } else {
-                statement = connection.prepareStatement("insert into purchase VALUES (((SELECT COUNT(*) FROM merchandise) + 1), ?, ?, " +
+                statement = connection.prepareStatement("insert into purchase VALUES (((SELECT COUNT(*) FROM purchase) + 1), ?, ?, " +
                         "0, (select idEmployee from employee where phone = ?), " +
-                        "(SELECT CURDATE ()))");
+                        "(SELECT CAST(GETDATE() AS DATE)))");
                 statement.setInt(1, Integer.parseInt(firstMerchField.getText()));
-                statement.setInt(2, Integer.parseInt(totalSumField.getText()));
+                statement.setFloat(2, Float.parseFloat(totalSumField.getText()));
                 statement.setString(3, Authorization.authorizedPhone);
             }
             statement.executeLargeUpdate();
+            merchFieldCleaner();
         } catch (SQLException e){
             e.printStackTrace();
             purchaseWarningLabel.setText("Ошибка при создании заказа!");
@@ -577,7 +559,6 @@ public class EmployeeController {
                     resultSet = statement.executeQuery("select price from merchandise where idMerchandise = '" + secondMerchField.getText() + "'");
                     resultSet.next();
                     goodsSum += resultSet.getInt(1);
-                    System.out.println(goodsSum);
                     goodsSumField.setText(String.valueOf(goodsSum));
                     getDiscountInOrder();
                     firstMerchField.setEditable(false);
@@ -594,7 +575,6 @@ public class EmployeeController {
                     resultSet = statement.executeQuery("select price from merchandise where idMerchandise = '" + thirdMerchField.getText() + "'");
                     resultSet.next();
                     goodsSum += resultSet.getInt(1);
-                    System.out.println(goodsSum);
                     goodsSumField.setText(String.valueOf(goodsSum));
                     getDiscountInOrder();
                     firstMerchField.setEditable(false);
@@ -614,7 +594,6 @@ public class EmployeeController {
                     resultSet = statement.executeQuery("select price from merchandise where idMerchandise = '" + fourthMerchField.getText() + "'");
                     resultSet.next();
                     goodsSum += resultSet.getInt(1);
-                    System.out.println(goodsSum);
                     goodsSumField.setText(String.valueOf(goodsSum));
                     getDiscountInOrder();
                     firstMerchField.setEditable(false);
@@ -629,11 +608,46 @@ public class EmployeeController {
             merchFieldCleaner();
             throw new RuntimeException(e);
         }
+        getReturnButton.setOnAction(actionEvent -> {
+            if (idPurchaseField.getText() != null){
+                try {
+                    findPurchase();
+                    System.out.println("погнали");
+                } catch (ClassNotFoundException | NoSuchMethodException | InvocationTargetException |
+                         InstantiationException | IllegalAccessException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        });
+
+
     }
 
-        void getDiscountInOrder(){
+        void findPurchase() throws ClassNotFoundException, NoSuchMethodException, InvocationTargetException,
+                InstantiationException, IllegalAccessException {
+            Class.forName(driverUrl).getDeclaredConstructor().newInstance();
+            try (Connection connection = DriverManager.getConnection(serverUrl)) {
+                Statement statement = connection.createStatement();
+                // таблица "подключение"
+                ResultSet resultSet;
+                resultSet = statement.executeQuery("select paySum, client from purchase where idPurchase = '"
+                        + idPurchaseField.getText() + "'");
+                resultSet.next();
+                sumPurchaseField.setText(resultSet.getString(1));
+                idClient = resultSet.getString(2);
+                if (!Objects.equals(idClient, "0")){
+                    resultSet = statement.executeQuery("update client set totalOrdersSum = totalOrdersSum - (select paySum from purchase where idPurchase = '" +
+                            idPurchaseField.getText() + "')");
+                    resultSet.next();
+                }
+            } catch (SQLException e) {
+                purchaseWarningLabel.setText("Ошибка!");
+                throw new RuntimeException(e);
+            }
+        }
+
+            void getDiscountInOrder(){
             if (clientPhoneField.getText().matches("[+][7][0-9]{10}") & clientPhoneRadio.isSelected()){
-                System.out.println("yeah");
                 try (Connection connection = DriverManager.getConnection(serverUrl)) {
                     Statement statement = connection.createStatement();
                     ResultSet resultSet;
@@ -642,7 +656,6 @@ public class EmployeeController {
                     resultSet.next();
                     discount = resultSet.getFloat(1);
                     clientPhoneField.setEditable(false);
-                    System.out.println(discount);
                     if (discount > 0) {
                         discountField.setText(String.valueOf(discount));
                     }
@@ -652,6 +665,7 @@ public class EmployeeController {
                         totalSumField.setText(String.valueOf(Float.parseFloat(goodsSumField.getText()) * (1 - discount)));
                     }
                 } catch (SQLException ex) {
+                    purchaseWarningLabel.setText("Клиент не найден!");
                     throw new RuntimeException(ex);
                 }
             } else {
@@ -718,6 +732,18 @@ public class EmployeeController {
     }
 
     void merchFieldCleaner(){
+        if (firstMerchRadio.isSelected()){
+            firstMerchRadio.fire();
+        }
+        if (secondMerchRadio.isSelected()){
+            secondMerchRadio.fire();
+        }
+        if (thirdMerchRadio.isSelected()){
+            thirdMerchRadio.fire();
+        }
+        if (thirdMerchRadio.isSelected()){
+            thirdMerchRadio.fire();
+        }
         goodsQuant = 0;
         IDMerchField.setText("");
         firstMerchField.setText("");
@@ -743,6 +769,9 @@ public class EmployeeController {
         sumPurchaseField.setText("");
         totalSumField.setText("");
         sumPurchaseField.setText("");
+        clientPhoneField.setText("");
+        goodsSumField.setText("");
+        goodsSum = 0;
     }
 
 }
