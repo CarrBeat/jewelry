@@ -36,8 +36,7 @@
                         <TableColumn fx:id="warrantyMerchColumn" prefWidth="114.0" text="Гарантийный срок" />
                         <TableColumn fx:id="priceMerchColumn" prefWidth="62.0" text="Цена" />
                         <TableColumn fx:id="quantMerchColumn" minWidth="0.0" prefWidth="85.0" text="Ед. на складе" />
-                        <TableColumn fx:id="descriptionMerchColumn" prefWidth="90.0" text="Описание" />
-                        <TableColumn fx:id="photoMerchColumn" prefWidth="66.0" text="Фото" />
+                        <TableColumn fx:id="descriptionMerchColumn" prefWidth="160.0" text="Описание" />
                     </columns>
                   </TableView>
                   <TextField fx:id="modelMerchField" alignment="CENTER" layoutX="231.0" layoutY="476.0" prefHeight="32.0" prefWidth="166.0" promptText="Модель">
@@ -177,9 +176,9 @@
                       <TableColumn fx:id="IDpurchaseColumn" prefWidth="38.0" text="ID" />
                       <TableColumn fx:id="merchPurchaseColumn" prefWidth="190.0" text="Товар" />
                         <TableColumn fx:id="paySumPurchaseColumn" prefWidth="120.0" text="Сумма оплаты" />
-                        <TableColumn fx:id="payMethodPurchaseColumn" prefWidth="134.0" text="Способ оплаты" />
                         <TableColumn fx:id="clientPurchaseColumn" prefWidth="138.0" text="Клиент" />
                         <TableColumn fx:id="employeePurchaseColumn" prefWidth="161.0" text="Продавец" />
+                        <TableColumn fx:id="purchaseDateColumn" prefWidth="135.0" text="Способ оплаты" />
                     </columns>
                   </TableView>
                   <TextField fx:id="merchPurchaseField" alignment="CENTER" layoutX="325.0" layoutY="483.0" prefHeight="38.0" prefWidth="220.0" promptText="Товар">

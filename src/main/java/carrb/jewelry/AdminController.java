@@ -113,7 +113,7 @@ public class AdminController {
     private RadioButton clientPurchaseRadio;
 
     @FXML
-    private TableView<?> clientTableView;
+    private TableView<clientTable> clientTableView;
 
     @FXML
     private Label clientWarningLabel;
@@ -206,7 +206,7 @@ public class AdminController {
     private RadioButton merchPurchaseRadio;
 
     @FXML
-    private TableView<?> merchandiseTableView;
+    private TableView<merchandiseTable> merchandiseTableView;
 
     @FXML
     private TableColumn<?, ?> modelMerchColumn;
@@ -236,7 +236,7 @@ public class AdminController {
     private TextField passDataEmployeeField;
 
     @FXML
-    private TableColumn<?, ?> payMethodPurchaseColumn;
+    private TableColumn<?, ?> purchaseDateColumn;
 
     @FXML
     private TextField payMethodPurchaseField;
@@ -284,7 +284,7 @@ public class AdminController {
     private RadioButton priceMerchRadio;
 
     @FXML
-    private TableView<?> purchaseTableView;
+    private TableView<purchaseTable> purchaseTableView;
 
     @FXML
     private TableColumn<?, ?> quantMerchColumn;
@@ -391,12 +391,18 @@ public class AdminController {
     @FXML
     private TextField weightMerchField;
     ObservableList<employeeTable> employeeTableData = FXCollections.observableArrayList();
+    ObservableList<merchandiseTable> merchandiseTableData = FXCollections.observableArrayList();
+    ObservableList<purchaseTable> purchaseTableData = FXCollections.observableArrayList();
+    ObservableList<clientTable> clientTableData = FXCollections.observableArrayList();
 
 
     @FXML
     void initialize() throws ClassNotFoundException, InvocationTargetException, NoSuchMethodException,
             InstantiationException, IllegalAccessException {
         showEmployeeTable();
+        showMerchandiseTable();
+        showPurchaseTable();
+        showClientTable();
         addStrEmployeeButton.setOnAction(actionEvent -> {
             employeeWarningField.setText("");
             if (idEmployeeField.getText().matches("\\d+") & phoneEmployeeField.getText().matches("[+][7][0-9]{10}") &
@@ -412,12 +418,103 @@ public class AdminController {
                     throw new RuntimeException(e);
                 }
             }
-
-
         });
     }
 
-    void showEmployeeTable() throws ClassNotFoundException, NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
+    void showClientTable() throws ClassNotFoundException, NoSuchMethodException, InvocationTargetException,
+            InstantiationException, IllegalAccessException {
+        clientTableData.clear();
+        Class.forName(driverUrl).getDeclaredConstructor().newInstance();
+        try (Connection connection = DriverManager.getConnection(serverUrl)) {
+            Statement statement = connection.createStatement();
+            // таблица "подключение"
+            ResultSet resultSet = statement.executeQuery("select * from client order by idClient");
+            while (true) {
+                assert resultSet != null;
+                if (!resultSet.next()) break;
+                clientTableData.add(new clientTable(resultSet.getString(1), resultSet.getString(2),
+                        resultSet.getString(3), resultSet.getString(4), resultSet.getString(5),
+                        resultSet.getString(6), resultSet.getString(7), resultSet.getString(8),
+                        resultSet.getString(9)));
+                idClientColumn.setCellValueFactory(new PropertyValueFactory<>("idClient"));
+                phoneClientColumn.setCellValueFactory(new PropertyValueFactory<>("phone"));
+                surnameClientColumn.setCellValueFactory(new PropertyValueFactory<>("surname"));
+                nameClientColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
+                secondNameClientColumn.setCellValueFactory(new PropertyValueFactory<>("secondName"));
+                birthdateClientColumn.setCellValueFactory(new PropertyValueFactory<>("birthDate"));
+                emailClientColumn.setCellValueFactory(new PropertyValueFactory<>("email"));
+                totalOrderSumClientColumn.setCellValueFactory(new PropertyValueFactory<>("totalOrdersSum"));
+                discountLevelColumn.setCellValueFactory(new PropertyValueFactory<>("discount"));
+                clientTableView.setItems(clientTableData);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    void showPurchaseTable() throws ClassNotFoundException, NoSuchMethodException, InvocationTargetException,
+            InstantiationException, IllegalAccessException {
+        purchaseTableData.clear();
+        Class.forName(driverUrl).getDeclaredConstructor().newInstance();
+        try (Connection connection = DriverManager.getConnection(serverUrl)) {
+            Statement statement = connection.createStatement();
+            // таблица "подключение"
+            ResultSet resultSet = statement.executeQuery("select * from purchase order by idPurchase");
+            while (true) {
+                assert resultSet != null;
+                if (!resultSet.next()) break;
+                purchaseTableData.add(new purchaseTable(resultSet.getString(1),
+                        resultSet.getString(2), resultSet.getString(3),
+                        resultSet.getString(4), resultSet.getString(5),
+                        resultSet.getString(6)));
+                IDpurchaseColumn.setCellValueFactory(new PropertyValueFactory<>("idPurchase"));
+                merchPurchaseColumn.setCellValueFactory(new PropertyValueFactory<>("merchandiseId"));
+                paySumPurchaseColumn.setCellValueFactory(new PropertyValueFactory<>("paySum"));
+                clientPurchaseColumn.setCellValueFactory(new PropertyValueFactory<>("client"));
+                employeePurchaseColumn.setCellValueFactory(new PropertyValueFactory<>("seller"));
+                purchaseDateColumn.setCellValueFactory(new PropertyValueFactory<>("purchaseDate"));
+                purchaseTableView.setItems(purchaseTableData);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    void showMerchandiseTable() throws ClassNotFoundException, NoSuchMethodException, InvocationTargetException,
+            InstantiationException, IllegalAccessException {
+        merchandiseTableData.clear();
+        Class.forName(driverUrl).getDeclaredConstructor().newInstance();
+        try (Connection connection = DriverManager.getConnection(serverUrl)) {
+            Statement statement = connection.createStatement();
+            // таблица "подключение"
+            ResultSet resultSet = statement.executeQuery("select * from merchandise order by idMerchandise");
+            while (true) {
+                assert resultSet != null;
+                if (!resultSet.next()) break;
+                merchandiseTableData.add(new merchandiseTable(resultSet.getString(1), resultSet.getString(2),
+                        resultSet.getString(3), resultSet.getString(4), resultSet.getString(5),
+                        resultSet.getString(6), resultSet.getString(7), resultSet.getString(8),
+                        resultSet.getString(9), resultSet.getString(10), resultSet.getString(11)));
+                IDmerchColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
+                manufacturerMerchColumn.setCellValueFactory(new PropertyValueFactory<>("manufacturer"));
+                modelMerchColumn.setCellValueFactory(new PropertyValueFactory<>("model"));
+                typeMerchColumn.setCellValueFactory(new PropertyValueFactory<>("type"));
+                materialMerchColumn.setCellValueFactory(new PropertyValueFactory<>("material"));
+                sampleMerchColumn.setCellValueFactory(new PropertyValueFactory<>("sample"));
+                weightMerchColumn.setCellValueFactory(new PropertyValueFactory<>("weight"));
+                warrantyMerchColumn.setCellValueFactory(new PropertyValueFactory<>("warranty"));
+                priceMerchColumn.setCellValueFactory(new PropertyValueFactory<>("price"));
+                quantMerchColumn.setCellValueFactory(new PropertyValueFactory<>("quantOnStok"));
+                descriptionMerchColumn.setCellValueFactory(new PropertyValueFactory<>("description"));
+                merchandiseTableView.setItems(merchandiseTableData);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+        void showEmployeeTable() throws ClassNotFoundException, NoSuchMethodException, InvocationTargetException,
+                InstantiationException, IllegalAccessException {
         employeeTableData.clear();
         Class.forName(driverUrl).getDeclaredConstructor().newInstance();
         try (Connection connection = DriverManager.getConnection(serverUrl)) {
