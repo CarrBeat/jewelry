@@ -26,6 +26,7 @@ public class AuthorizationController {
                                         if (authMethRes.equals("incorrect login")){
                                             warningLabel.setText("Неверный логин!");
                                             loginField.setText("");
+                                            passwordField.setText("");
                                         } else {
                                             if (authMethRes.substring(authMethRes.indexOf("|") + 1)
                                                     .equals(passwordField.getText())){

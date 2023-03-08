@@ -417,21 +417,67 @@ public class EmployeeController {
             InstantiationException, IllegalAccessException {
         Class.forName(driverUrl).getDeclaredConstructor().newInstance();
         try (Connection connection = DriverManager.getConnection(serverUrl)) {
-            PreparedStatement statement = null;
+            PreparedStatement statement;
             switch (goodsQuant){
                 case 1:
-                    //statement = statement.executeQuery("select * from merchandise where idMerchandise ='" + IDMerchField.getText() + "'");
+                    statement = connection.prepareStatement("update merchandise set quantInStok = quantInStok - 1 where idMerchandise = '"
+                            + firstMerchField.getText() + "'");
+                    statement.executeLargeUpdate();
                     break;
                 case 2:
-
+                    statement = connection.prepareStatement("update merchandise set quantInStok = quantInStok - 1 where idMerchandise = '"
+                            + firstMerchField.getText() + "'");
+                    statement.executeLargeUpdate();
+                    statement = connection.prepareStatement("update merchandise set quantInStok = quantInStok - 1 where idMerchandise = '"
+                            + secondMerchField.getText() + "'");
+                    statement.executeLargeUpdate();
                     break;
                 case 3:
-
+                    statement = connection.prepareStatement("update merchandise set quantInStok = quantInStok - 1 where idMerchandise = '"
+                            + firstMerchField.getText() + "'");
+                    statement.executeLargeUpdate();
+                    statement = connection.prepareStatement("update merchandise set quantInStok = quantInStok - 1 where idMerchandise = '"
+                            + secondMerchField.getText() + "'");
+                    statement.executeLargeUpdate();
+                    statement = connection.prepareStatement("update merchandise set quantInStok = quantInStok - 1 where idMerchandise = '"
+                            + thirdMerchField.getText() + "'");
+                    statement.executeLargeUpdate();
                     break;
                 case 4:
-
+                    statement = connection.prepareStatement("update merchandise set quantInStok = quantInStok - 1 where idMerchandise = '"
+                            + firstMerchField.getText() + "'");
+                    statement.executeLargeUpdate();
+                    statement = connection.prepareStatement("update merchandise set quantInStok = quantInStok - 1 where idMerchandise = '"
+                            + secondMerchField.getText() + "'");
+                    statement.executeLargeUpdate();
+                    statement = connection.prepareStatement("update merchandise set quantInStok = quantInStok - 1 where idMerchandise = '"
+                            + thirdMerchField.getText() + "'");
+                    statement.executeLargeUpdate();
+                    statement = connection.prepareStatement("update merchandise set quantInStok = quantInStok - 1 where idMerchandise = '"
+                            + fourthMerchField.getText() + "'");
+                    statement.executeLargeUpdate();
                     break;
             }
+            if (clientPhoneField.getText().matches("[+][7][0-9]{10}") & clientPhoneRadio.isSelected()){
+                statement = connection.prepareStatement("update client set totalOrdersSum = totalOrdersSum + '"
+                        + Float.parseFloat(totalSumField.getText()) + "'" +" where phone = '" + clientPhoneField.getText() + "'");
+                statement.executeLargeUpdate();
+                statement = connection.prepareStatement("insert into purchase VALUES (((SELECT COUNT(*) FROM merchandise) + 1), ?, ?, " +
+                        "(select idClient from client where phone = ?), (select idEmployee from employee where phone = ?), " +
+                        "(SELECT CURDATE ()))");
+                statement.setInt(1, Integer.parseInt(firstMerchField.getText()));
+                statement.setFloat(2, Float.parseFloat(totalSumField.getText()));
+                statement.setString(3, clientPhoneField.getText());
+                statement.setString(4, Authorization.authorizedPhone);
+            } else {
+                statement = connection.prepareStatement("insert into purchase VALUES (((SELECT COUNT(*) FROM merchandise) + 1), ?, ?, " +
+                        "0, (select idEmployee from employee where phone = ?), " +
+                        "(SELECT CURDATE ()))");
+                statement.setInt(1, Integer.parseInt(firstMerchField.getText()));
+                statement.setInt(2, Integer.parseInt(totalSumField.getText()));
+                statement.setString(3, Authorization.authorizedPhone);
+            }
+            statement.executeLargeUpdate();
         } catch (SQLException e){
             e.printStackTrace();
             purchaseWarningLabel.setText("Ошибка при создании заказа!");
@@ -696,6 +742,7 @@ public class EmployeeController {
         clientPhoneField.setEditable(true);
         sumPurchaseField.setText("");
         totalSumField.setText("");
+        sumPurchaseField.setText("");
     }
 
 }

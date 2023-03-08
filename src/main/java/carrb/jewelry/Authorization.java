@@ -9,6 +9,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.sql.*;
 
 public class Authorization extends Application {
+    public static String authorizedPhone;
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(Authorization.class.getResource("authorize.fxml"));
@@ -35,6 +36,9 @@ public class Authorization extends Application {
             resultSet.next();
             password = resultSet.getString(1);
             role = resultSet.getString(2);
+            if (role.contains("employee")){
+                authorizedPhone = inLogin;
+            }
             return (role + "|" + password);
         } catch (SQLException throwable) {
             throwable.printStackTrace();
