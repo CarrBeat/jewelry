@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" style="-fx-background-color: #F3DC77;" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="carrb.jewelry.EmployeeController">
+  <tabs>
+    <Tab text="Главная - учёт товаров">
+      <content>
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <Label alignment="CENTER" layoutX="265.0" layoutY="28.0" prefHeight="39.0" prefWidth="470.0" text="Учёт товаров">
+                     <font>
+                        <Font name="Times New Roman" size="35.0" />
+                     </font>
+                  </Label>
+                  <TableView fx:id="merchandiseTableView" layoutX="16.0" layoutY="102.0" prefHeight="359.0" prefWidth="967.0">
+                    <columns>
+                        <TableColumn fx:id="IDmerchColumn" prefWidth="37.0" text="ID" />
+                      <TableColumn fx:id="manufacturerMerchColumn" prefWidth="97.0" text="Производитель" />
+                      <TableColumn fx:id="modelMerchColumn" prefWidth="108.0" text="Модель" />
+                        <TableColumn fx:id="typeMerchColumn" prefWidth="98.0" text="Тип товара" />
+                        <TableColumn fx:id="materialMerchColumn" prefWidth="88.0" text="Материал" />
+                        <TableColumn fx:id="sampleMerchColumn" prefWidth="46.0" text="Проба" />
+                        <TableColumn fx:id="weightMerchColumn" prefWidth="69.0" text="Вес" />
+                        <TableColumn fx:id="warrantyMerchColumn" prefWidth="114.0" text="Гарантийный срок" />
+                        <TableColumn fx:id="priceMerchColumn" prefWidth="62.0" text="Цена" />
+                        <TableColumn fx:id="quantMerchColumn" minWidth="0.0" prefWidth="85.0" text="Ед. на складе" />
+                        <TableColumn fx:id="descriptionMerchColumn" prefWidth="160.0" text="Описание" />
+                    </columns>
+                  </TableView>
+                  <TextField fx:id="modelMerchField" alignment="CENTER" layoutX="19.0" layoutY="543.0" prefHeight="32.0" prefWidth="370.0" promptText="Модель">
+                     <font>
+                        <Font name="Times New Roman" size="17.0" />
+                     </font>
+                  </TextField>
+                  <TextField fx:id="IDMerchField" alignment="CENTER" layoutX="18.0" layoutY="476.0" prefHeight="32.0" prefWidth="37.0" promptText="ID">
+                     <font>
+                        <Font name="Times New Roman" size="17.0" />
+                     </font>
+                  </TextField>
+                  <TextField fx:id="manufacturerMerchField" alignment="CENTER" layoutX="63.0" layoutY="476.0" prefHeight="32.0" prefWidth="160.0" promptText="Производитель">
+                     <font>
+                        <Font name="Times New Roman" size="17.0" />
+                     </font>
+                  </TextField>
+                  <TextField fx:id="typeMerchField" alignment="CENTER" layoutX="406.0" layoutY="476.0" prefHeight="32.0" prefWidth="127.0" promptText="Тип товара">
+                     <font>
+                        <Font name="Times New Roman" size="17.0" />
+                     </font>
+                  </TextField>
+                  <Label fx:id="merchandiseWarningLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="470.0" layoutY="577.0" prefHeight="39.0" prefWidth="387.0" textFill="#fc0000">
+                     <font>
+                        <Font name="Times New Roman" size="18.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="materialMerchField" alignment="CENTER" layoutX="543.0" layoutY="476.0" prefHeight="32.0" prefWidth="150.0" promptText="Материал">
+                     <font>
+                        <Font name="Times New Roman" size="17.0" />
+                     </font>
+                  </TextField>
+                  <TextField fx:id="sampleMerchField" alignment="CENTER" layoutX="700.0" layoutY="476.0" prefHeight="32.0" prefWidth="140.0" promptText="Проба">
+                     <font>
+                        <Font name="Times New Roman" size="17.0" />
+                     </font>
+                  </TextField>
+                  <TextField fx:id="weightMerchField" alignment="CENTER" layoutX="846.0" layoutY="476.0" prefHeight="32.0" prefWidth="137.0" promptText="Вес">
+                     <font>
+                        <Font name="Times New Roman" size="17.0" />
+                     </font>
+                  </TextField>
+                  <TextField fx:id="warrantyMerchField" alignment="CENTER" layoutX="230.0" layoutY="476.0" prefHeight="32.0" prefWidth="170.0" promptText="Гарантийный срок">
+                     <font>
+                        <Font name="Times New Roman" size="17.0" />
+                     </font>
+                  </TextField>
+                  <TextField fx:id="priceMerchField" alignment="CENTER" layoutX="394.0" layoutY="543.0" prefHeight="32.0" prefWidth="86.0" promptText="Цена">
+                     <font>
+                        <Font name="Times New Roman" size="17.0" />
+                     </font>
+                  </TextField>
+                  <TextField fx:id="quantMerchField" alignment="CENTER" layoutX="486.0" layoutY="543.0" prefHeight="32.0" prefWidth="119.0" promptText="Ед. на складе">
+                     <font>
+                        <Font name="Times New Roman" size="17.0" />
+                     </font>
+                  </TextField>
+                  <TextField fx:id="descriptionMerchField" alignment="CENTER" layoutX="612.0" layoutY="543.0" prefHeight="32.0" prefWidth="370.0" promptText="Описание">
+                     <font>
+                        <Font name="Times New Roman" size="17.0" />
+                     </font>
+                  </TextField>
+                  <RadioButton fx:id="IDMerchRadio" layoutX="29.0" layoutY="512.0" mnemonicParsing="false" />
+                  <RadioButton fx:id="modelMerchRadio" layoutX="197.0" layoutY="579.0" mnemonicParsing="false" />
+                  <RadioButton fx:id="manufacturerMerchRadio" layoutX="135.0" layoutY="512.0" mnemonicParsing="false" />
+                  <RadioButton fx:id="typeMerchRadio" layoutX="462.0" layoutY="512.0" mnemonicParsing="false" />
+                  <RadioButton fx:id="materialMerchRadio" layoutX="609.0" layoutY="513.0" mnemonicParsing="false" />
+                  <RadioButton fx:id="priceMerchRadio" layoutX="429.0" layoutY="579.0" mnemonicParsing="false" />
+                  <RadioButton fx:id="warrantyMerchRadio" layoutX="307.0" layoutY="512.0" mnemonicParsing="false" />
+                  <RadioButton fx:id="descriptionMerchRadio" layoutX="789.0" layoutY="579.0" mnemonicParsing="false" />
+                  <Button fx:id="findMerchButton" layoutX="282.0" layoutY="619.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="145.0" style="-fx-background-color: #9DB1CC; -fx-border-radius: 5; -fx-border-color: #000000;" text="НАЙТИ ТОВАР">
+                     <font>
+                        <Font name="Times New Roman" size="16.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="stopFilterMerchButton" layoutX="435.0" layoutY="619.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="175.0" style="-fx-background-color: #9DB1CC; -fx-border-radius: 5; -fx-border-color: #000000;" text="СБРОСИТЬ ФИЛЬТР">
+                     <font>
+                        <Font name="Times New Roman" size="16.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="addMerchButton" layoutX="619.0" layoutY="619.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="165.0" style="-fx-background-color: #9DB1CC; -fx-border-radius: 5; -fx-border-color: #000000;" text="ДОБАВИТЬ ТОВАР">
+                     <font>
+                        <Font name="Times New Roman" size="16.0" />
+                     </font>
+                  </Button>
+               </children></AnchorPane>
+      </content>
+    </Tab>
+      <Tab text="Продажи, клиенты">
+         <content>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <Rectangle fill="#f3dc77" height="150.0" layoutX="164.0" layoutY="500.0" stroke="BLACK" strokeType="INSIDE" width="666.0" />
+                  <Rectangle fill="#f3dc77" height="52.0" layoutX="226.0" layoutY="56.0" stroke="BLACK" strokeType="INSIDE" width="150.0" />
+                  <Rectangle fill="#f3dc77" height="245.0" layoutX="24.0" layoutY="8.0" stroke="BLACK" strokeType="INSIDE" width="952.0" />
+                  <Label layoutX="428.0" layoutY="14.0" text="Новая продажа">
+                     <font>
+                        <Font name="Times New Roman" size="22.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="purchaseWarningLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="146.0" layoutY="268.0" prefHeight="24.0" prefWidth="702.0" textFill="RED">
+                     <font>
+                        <Font name="Times New Roman" size="20.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="clearFields" layoutX="651.0" layoutY="201.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="200.0" style="-fx-background-color: #4cbb17; -fx-border-color: #000000; -fx-border-radius: 5;" text="ОЧИСТИТЬ ПОЛЯ">
+                     <font>
+                        <Font name="Times New Roman" size="20.0" />
+                     </font>
+                  </Button>
+                  <RadioButton fx:id="clientPhoneRadio" layoutX="934.0" layoutY="65.0" mnemonicParsing="false" />
+                  <Button fx:id="pushPurchase" layoutX="348.0" layoutY="201.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="280.0" style="-fx-background-color: #4cbb17; -fx-border-color: #000000; -fx-border-radius: 5;" text="ВЫПОЛНИТЬ ПРОДАЖУ">
+                     <font>
+                        <Font name="Times New Roman" size="20.0" />
+                     </font>
+                  </Button>
+                  <TextField fx:id="clientPhoneField" alignment="CENTER" layoutX="705.0" layoutY="56.0" prefHeight="38.0" prefWidth="215.0" promptText="Номер телефона клиента">
+                     <font>
+                        <Font name="Times New Roman" size="18.0" />
+                     </font>
+                  </TextField>
+                  <Button fx:id="getReturnButton" layoutX="371.0" layoutY="599.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="245.0" style="-fx-background-color: #4cbb17; -fx-border-color: #000000; -fx-border-radius: 5;" text="ОФОРМИТЬ ВОЗВРАТ">
+                     <font>
+                        <Font name="Times New Roman" size="20.0" />
+                     </font>
+                  </Button>
+                  <TextField fx:id="idPurchaseField" alignment="CENTER" layoutX="210.0" layoutY="540.0" prefHeight="38.0" prefWidth="135.0" promptText="ID продажи">
+                     <font>
+                        <Font name="Times New Roman" size="18.0" />
+                     </font>
+                  </TextField>
+                  <TextField fx:id="firstMerchField" alignment="CENTER" layoutX="87.0" layoutY="56.0" prefHeight="38.0" prefWidth="115.0" promptText="ID товара 1">
+                     <font>
+                        <Font name="Times New Roman" size="18.0" />
+                     </font>
+                  </TextField>
+                  <RadioButton fx:id="firstMerchRadio" layoutX="213.0" layoutY="65.0" mnemonicParsing="false" />
+                  <TextField fx:id="secondMerchField" alignment="CENTER" layoutX="240.0" layoutY="56.0" prefHeight="38.0" prefWidth="115.0" promptText="ID товара 2">
+                     <font>
+                        <Font name="Times New Roman" size="18.0" />
+                     </font>
+                  </TextField>
+                  <RadioButton fx:id="secondMerchRadio" layoutX="367.0" layoutY="65.0" mnemonicParsing="false" />
+                  <TextField fx:id="thirdMerchField" alignment="CENTER" layoutX="395.0" layoutY="56.0" prefHeight="38.0" prefWidth="115.0" promptText="ID товара 3">
+                     <font>
+                        <Font name="Times New Roman" size="18.0" />
+                     </font>
+                  </TextField>
+                  <RadioButton fx:id="thirdMerchRadio" layoutX="520.0" layoutY="65.0" mnemonicParsing="false" />
+                  <TextField fx:id="fourthMerchField" alignment="CENTER" layoutX="546.0" layoutY="56.0" prefHeight="38.0" prefWidth="115.0" promptText="ID товара 4">
+                     <font>
+                        <Font name="Times New Roman" size="18.0" />
+                     </font>
+                  </TextField>
+                  <RadioButton fx:id="fourthMerchRadio" layoutX="675.0" layoutY="65.0" mnemonicParsing="false" />
+                  <TextField fx:id="goodsSumField" alignment="CENTER" editable="false" layoutX="239.0" layoutY="140.0" prefHeight="38.0" prefWidth="167.0">
+                     <font>
+                        <Font name="Times New Roman" size="18.0" />
+                     </font>
+                  </TextField>
+                  <Button fx:id="calculateButton" layoutX="151.0" layoutY="201.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="175.0" style="-fx-background-color: #4cbb17; -fx-border-color: #000000; -fx-border-radius: 5;" text="РАССЧИТАТЬ">
+                     <font>
+                        <Font name="Times New Roman" size="20.0" />
+                     </font>
+                  </Button>
+                  <Label layoutX="455.0" layoutY="506.0" text="Возврат">
+                     <font>
+                        <Font name="Times New Roman" size="22.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="sumPurchaseField" alignment="CENTER" layoutX="622.0" layoutY="540.0" prefHeight="38.0" prefWidth="167.0" promptText="СУММА ЗАКАЗА">
+                     <font>
+                        <Font name="Times New Roman" size="18.0" />
+                     </font>
+                  </TextField>
+                  <Rectangle fill="#f3dc77" height="163.0" layoutX="24.0" layoutY="310.0" stroke="BLACK" strokeType="INSIDE" width="952.0" />
+                  <TextField fx:id="surnameClientField" alignment="CENTER" layoutX="43.0" layoutY="364.0" prefHeight="38.0" prefWidth="181.0" promptText="Фамилия">
+                     <font>
+                        <Font name="Times New Roman" size="18.0" />
+                     </font>
+                  </TextField>
+                  <Label layoutX="401.0" layoutY="321.0" text="Регистрация клиента">
+                     <font>
+                        <Font name="Times New Roman" size="22.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="birthdateClientField" alignment="CENTER" layoutX="614.0" layoutY="364.0" prefHeight="38.0" prefWidth="140.0" promptText="Дата рождения">
+                     <font>
+                        <Font name="Times New Roman" size="18.0" />
+                     </font>
+                  </TextField>
+                  <TextField fx:id="nameClientField" alignment="CENTER" layoutX="229.0" layoutY="364.0" prefHeight="38.0" prefWidth="188.0" promptText="Имя">
+                     <font>
+                        <Font name="Times New Roman" size="18.0" />
+                     </font>
+                  </TextField>
+                  <Button fx:id="registerClientButton" layoutX="510.0" layoutY="417.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="265.0" style="-fx-background-color: #4cbb17; -fx-border-color: #000000; -fx-border-radius: 5;" text="ЗАРЕГИСТРИРОВАТЬ">
+                     <font>
+                        <Font name="Times New Roman" size="20.0" />
+                     </font>
+                  </Button>
+                  <TextField fx:id="secondNameClientField" alignment="CENTER" layoutX="422.0" layoutY="364.0" prefHeight="38.0" prefWidth="187.0" promptText="Отчество">
+                     <font>
+                        <Font name="Times New Roman" size="18.0" />
+                     </font>
+                  </TextField>
+                  <TextField fx:id="phoneRegisterClientField" alignment="CENTER" layoutX="762.0" layoutY="364.0" prefHeight="38.0" prefWidth="190.0" promptText="Номер телефона">
+                     <font>
+                        <Font name="Times New Roman" size="18.0" />
+                     </font>
+                  </TextField>
+                  <TextField fx:id="emailClientField" alignment="CENTER" layoutX="224.0" layoutY="417.0" prefHeight="38.0" prefWidth="270.0" promptText="Email">
+                     <font>
+                        <Font name="Times New Roman" size="18.0" />
+                     </font>
+                  </TextField>
+                  <TextField fx:id="discountField" alignment="CENTER" editable="false" layoutX="417.0" layoutY="140.0" prefHeight="38.0" prefWidth="167.0">
+                     <font>
+                        <Font name="Times New Roman" size="18.0" />
+                     </font>
+                  </TextField>
+                  <TextField fx:id="totalSumField" alignment="CENTER" editable="false" layoutX="595.0" layoutY="140.0" prefHeight="38.0" prefWidth="167.0">
+                     <font>
+                        <Font name="Times New Roman" size="18.0" />
+                     </font>
+                  </TextField>
+                  <Label layoutX="291.0" layoutY="108.0" text="Сумма:">
+                     <font>
+                        <Font name="Times New Roman" size="20.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="463.0" layoutY="108.0" text="Скидка:">
+                     <font>
+                        <Font name="Times New Roman" size="20.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="639.0" layoutY="108.0" text="ИТОГО:">
+                     <font>
+                        <Font name="Times New Roman" size="20.0" />
+                     </font>
+                  </Label>
+               </children></AnchorPane>
+         </content>
+      </Tab>
+  </tabs>
+</TabPane>

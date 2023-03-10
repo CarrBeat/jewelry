@@ -24,14 +24,9 @@
             <Font name="Times New Roman" size="20.0" />
          </font>
       </PasswordField>
-      <Button fx:id="enterButton" layoutX="209.0" layoutY="288.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="106.0" style="-fx-border-color: #000000; -fx-border-width: 2; -fx-border-radius: 5; -fx-background-color: #F3DC77;" text="ВОЙТИ">
+      <Button fx:id="enterButton" layoutX="208.0" layoutY="265.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="106.0" style="-fx-border-color: #000000; -fx-border-width: 2; -fx-border-radius: 5; -fx-background-color: #F3DC77;" text="ВОЙТИ">
          <font>
             <Font name="System Bold" size="20.0" />
-         </font>
-      </Button>
-      <Button fx:id="newPasswordButton" layoutX="115.0" layoutY="211.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="293.0" style="-fx-background-color: #F3DC77;" text="Забыли пароль или не зарегистрированы?">
-         <font>
-            <Font name="Times New Roman" size="15.0" />
          </font>
       </Button>
       <Label layoutX="180.0" layoutY="14.0" text="Ювелирчик">
@@ -39,7 +34,7 @@
             <Font name="Times New Roman Italic" size="34.0" />
          </font>
       </Label>
-      <Label fx:id="warningLabel" alignment="CENTER" layoutX="77.0" layoutY="252.0" prefHeight="20.0" prefWidth="370.0" textFill="RED">
+      <Label fx:id="warningLabel" alignment="CENTER" layoutX="76.0" layoutY="222.0" prefHeight="20.0" prefWidth="370.0" textFill="RED">
          <font>
             <Font name="Times New Roman" size="18.0" />
          </font>
